@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/header}">
+<head>
+  <title>Revenue Reports - UAS PBO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+  <div layout:fragment="content">
+    <div class="container admin-dashboard">
+      <h1 class="page-header">📈 Revenue Reports</h1>
+
+      <!-- Main Revenue Stats -->
+      <div class="card">
+        <div class="card-header">
+          💰 Revenue Overview
+        </div>
+        <div class="card-body text-center">
+          <div class="revenue-display">
+            <div class="revenue-amount">Rp [[${#numbers.formatInteger(totalRevenue, 0, 'COMMA')}]]</div>
+            <div class="revenue-label">Total Revenue Generated</div>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-number" th:text="${transactions != null ? #lists.size(transactions) : '0'}">0</div>
+              <div class="stat-label">Total Orders</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number" th:text="${transactions != null and !transactions.isEmpty() ? #numbers.formatInteger(#aggregates.avg(transactions.![total]), 0, 'COMMA') : '0'}">0</div>
+              <div class="stat-label">Average Order</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">2</div>
+              <div class="stat-label">Unique Customers</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number" th:text="${transactions != null and !transactions.isEmpty() ? #numbers.formatInteger(#aggregates.max(transactions.![total]), 0, 'COMMA') : '0'}">0</div>
+              <div class="stat-label">Highest Order</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <!-- Top Products -->
+        <div class="col">
+          <div class="card">
+            <div class="card-header">
+              🏆 Top Selling Products
+            </div>
+            <div class="card-body">
+              <div th:if="${#lists.isEmpty(products)}" class="alert alert-warning">
+                ⚠️ No products data available
+              </div>
+              <div th:if="${!#lists.isEmpty(products)}">
+                <div th:each="product, iterStat : ${products}" class="product-card">
+                  <div class="product-header">
+                    <h3 th:text="${product.name}">Product Name</h3>
+                    <div class="product-price">Rp [[${#numbers.formatInteger(product.price, 0, 'COMMA')}]]</div>
+                  </div>
+                  <div class="product-body">
+                    <div class="product-stock" th:class="'product-stock ' + (${product.stock} > 10 ? 'available' : (${product.stock} > 0 ? 'low' : 'out'))"
+                         th:text="'Stock: ' + ${product.stock}">Stock</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Transactions Summary -->
+        <div class="col">
+          <div class="card">
+            <div class="card-header">
+              📊 Recent Transactions Summary
+            </div>
+            <div class="card-body">
+              <div th:if="${#lists.isEmpty(transactions)}" class="alert alert-warning">
+                ⚠️ No transactions yet
+              </div>
+              <div th:if="${!#lists.isEmpty(transactions)}">
+                <div th:each="transaction : ${#lists.sublist(transactions, 0, #lists.size(transactions) > 10 ? 10 : #lists.size(transactions))}"
+                     class="transaction-summary">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                      <code th:text="${transaction.id}" class="transaction-id"></code>
+                      <br>
+                      <small class="text-muted" th:text="${#temporals.format(transaction.timestamp, 'dd/MM/yyyy HH:mm')}">Date</small>
+                    </div>
+                    <div class="text-end">
+                      <div class="transaction-total">Rp [[${#numbers.formatInteger(transaction.total, 0, 'COMMA')}]]</div>
+                      <small class="text-muted" th:text="'Customer: ' + ${transaction.userId}">Customer</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="card">
+        <div class="card-header">
+          ⚡ Quick Actions
+        </div>
+        <div class="card-body">
+          <div class="d-flex gap-3 flex-wrap">
+            <a th:href="@{/admin}" class="btn btn-secondary">
+              🏠 Back to Dashboard
+            </a>
+            <a th:href="@{/admin/transactions}" class="btn btn-primary">
+              📊 All Transactions
+            </a>
+            <a th:href="@{/admin/products}" class="btn btn-success">
+              📦 Manage Products
+            </a>
+            <form th:action="@{/admin/save}" method="post">
+              <button type="submit" class="btn btn-warning">
+                💾 Export Report
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

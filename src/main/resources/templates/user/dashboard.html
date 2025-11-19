@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/header}">
+<head>
+  <title>Menu - UAS PBO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+  <div layout:fragment="content">
+    <div class="container">
+      <h1 class="page-header">🍽️ Our Menu</h1>
+      <p class="welcome-subtitle">Discover delicious food options and place your order</p>
+
+      <!-- Search and Filter -->
+      <div class="card">
+        <div class="card-header">
+          🔍 Search & Filter
+        </div>
+        <div class="card-body">
+          <form th:action="@{/user}" method="get">
+            <div class="row">
+              <div class="col-2">
+                <div class="form-group">
+                  <label class="form-label" for="search">Search Menu</label>
+                  <input type="text" id="search" name="search" class="form-control"
+                         th:value="${search}" placeholder="Enter menu name..." />
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <label class="form-label" for="sort">Sort By</label>
+                  <select id="sort" name="sort" class="form-select">
+                    <option value="">Default Order</option>
+                    <option value="name_asc" th:selected="${sort == 'name_asc'}">📝 Name A-Z</option>
+                    <option value="name_desc" th:selected="${sort == 'name_desc'}">📝 Name Z-A</option>
+                    <option value="price_asc" th:selected="${sort == 'price_asc'}">💰 Price Low-High</option>
+                    <option value="price_desc" th:selected="${sort == 'price_desc'}">💰 Price High-Low</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">
+              🔍 Apply Filters
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Products Grid -->
+      <div th:if="${#lists.isEmpty(products)}" class="alert alert-warning">
+        ⚠️ No menu items available at the moment. Please check back later!
+      </div>
+
+      <div th:if="${!#lists.isEmpty(products)}">
+        <form th:action="@{/user/checkout}" method="post">
+          <div class="product-grid">
+            <div th:each="product : ${products}" class="product-card">
+              <div class="product-header">
+                <h3 th:text="${product.name}">Product Name</h3>
+                <div class="product-price">Rp [[${#numbers.formatInteger(product.price, 0, 'COMMA')}]]</div>
+              </div>
+              <div class="product-body">
+                <div class="product-stock" th:class="'product-stock ' + (${product.stock} > 10 ? 'available' : (${product.stock} > 0 ? 'low' : 'out'))"
+                     th:text="'Stock: ' + ${product.stock}">Stock</div>
+
+                <div class="form-group">
+                  <label class="form-label">Quantity:</label>
+                  <input type="hidden" name="productId" th:value="${product.id}" />
+                  <input class="quantity-input" type="number" name="qty" min="0" th:max="${product.stock}"
+                         value="0" placeholder="0" />
+                </div>
+
+                <div class="text-muted">
+                  💡 Enter quantity to add to cart
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Checkout Button -->
+          <div class="card">
+            <div class="card-body text-center">
+              <button type="submit" class="btn btn-success">
+                🛒 Proceed to Checkout
+              </button>
+              <div class="text-muted">
+                Items with quantity > 0 will be added to your order
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- User Actions -->
+      <div class="card">
+        <div class="card-header">
+          ⚡ Quick Actions
+        </div>
+        <div class="card-body">
+          <div class="d-flex gap-3 flex-wrap justify-content-center">
+            <a th:href="@{/user/history}" class="btn btn-primary">
+              📋 My Order History
+            </a>
+            <a th:href="@{/user}" class="btn btn-secondary">
+              🔄 Refresh Menu
+            </a>
+            <form th:action="@{/logout}" method="post">
+              <button type="submit" class="btn btn-danger">
+                🚪 Logout
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

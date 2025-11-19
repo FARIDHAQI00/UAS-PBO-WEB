@@ -1,0 +1,21 @@
+[ {
+  "id" : "ed239700-b9fc-4c6b-8105-6f5390d83c6a",
+  "email" : "admin@uas",
+  "password" : "admin123",
+  "role" : "ADMIN"
+}, {
+  "id" : "6130adaf-3d08-40bb-96dc-ea89812a93b8",
+  "email" : "user@uas",
+  "password" : "user123",
+  "role" : "USER"
+}, {
+  "id" : "9213d0ca-91b7-4e0d-bad1-52585a25e3dc",
+  "email" : "farid@uas",
+  "password" : "123",
+  "role" : "USER"
+}, {
+  "id" : "9a473168-6799-4d1e-9200-4b751882c800",
+  "email" : "upa@uas",
+  "password" : "123",
+  "role" : "USER"
+} ]

@@ -1,0 +1,94 @@
+[ {
+  "id" : "93a38119-0ae9-4144-8c32-b4518e606161",
+  "userId" : "6130adaf-3d08-40bb-96dc-ea89812a93b8",
+  "items" : [ {
+    "productId" : "0fafeb3e-e5ea-41b4-acda-1512c83fea5e",
+    "productName" : "Nasi Goreng",
+    "qty" : 1,
+    "price" : 15000
+  } ],
+  "timestamp" : [ 2025, 11, 17, 15, 45, 28, 694701505 ],
+  "total" : 15000
+}, {
+  "id" : "d63259e8-c8fa-4a0b-b9fa-43a1b52af177",
+  "userId" : "6130adaf-3d08-40bb-96dc-ea89812a93b8",
+  "items" : [ {
+    "productId" : "8b575b1f-3d00-4bf0-9a58-36bb03508dcb",
+    "productName" : "ice isomer",
+    "qty" : 3,
+    "price" : 100000
+  } ],
+  "timestamp" : [ 2025, 11, 17, 17, 36, 34, 655463504 ],
+  "total" : 300000
+}, {
+  "id" : "eb690c8e-1ffb-4087-bab6-fc60881c3754",
+  "userId" : "ed239700-b9fc-4c6b-8105-6f5390d83c6a",
+  "items" : [ {
+    "productId" : "0fafeb3e-e5ea-41b4-acda-1512c83fea5e",
+    "productName" : "Nasi Goreng",
+    "qty" : 1,
+    "price" : 15000
+  }, {
+    "productId" : "48cc85bd-ea0a-409f-8939-4dfd43ea3e91",
+    "productName" : "Mie Goreng",
+    "qty" : 2,
+    "price" : 12000
+  } ],
+  "timestamp" : [ 2025, 11, 18, 14, 23, 55, 998390302 ],
+  "total" : 39000
+}, {
+  "id" : "119ead8a-80db-41c0-8e82-986b4203b0f7",
+  "userId" : "6130adaf-3d08-40bb-96dc-ea89812a93b8",
+  "items" : [ {
+    "productId" : "0fafeb3e-e5ea-41b4-acda-1512c83fea5e",
+    "productName" : "Nasi Goreng",
+    "qty" : 1,
+    "price" : 15000
+  } ],
+  "timestamp" : [ 2025, 11, 18, 15, 37, 33, 466578729 ],
+  "total" : 15000
+}, {
+  "id" : "5cb65823-fe84-40a7-8d03-4c8bf2332683",
+  "userId" : "6130adaf-3d08-40bb-96dc-ea89812a93b8",
+  "items" : [ {
+    "productId" : "8b575b1f-3d00-4bf0-9a58-36bb03508dcb",
+    "productName" : "ice isomer",
+    "qty" : 1,
+    "price" : 100000
+  } ],
+  "timestamp" : [ 2025, 11, 18, 16, 57, 51, 576384417 ],
+  "total" : 100000
+}, {
+  "id" : "b3898017-591a-4308-9896-a04a164f16d6",
+  "userId" : "9213d0ca-91b7-4e0d-bad1-52585a25e3dc",
+  "items" : [ {
+    "productId" : "0fafeb3e-e5ea-41b4-acda-1512c83fea5e",
+    "productName" : "Nasi Goreng",
+    "qty" : 1,
+    "price" : 15000
+  } ],
+  "timestamp" : [ 2025, 11, 18, 19, 0, 31, 392228614 ],
+  "total" : 15000
+}, {
+  "id" : "ed5e44ff-ca6f-4488-a194-c09c8a0514fa",
+  "userId" : "9a473168-6799-4d1e-9200-4b751882c800",
+  "items" : [ {
+    "productId" : "8b575b1f-3d00-4bf0-9a58-36bb03508dcb",
+    "productName" : "ice isomer",
+    "qty" : 1,
+    "price" : 100000
+  } ],
+  "timestamp" : [ 2025, 11, 18, 19, 1, 11, 329177288 ],
+  "total" : 100000
+}, {
+  "id" : "b34067fd-151e-462a-9c10-7ac824bf550b",
+  "userId" : "6130adaf-3d08-40bb-96dc-ea89812a93b8",
+  "items" : [ {
+    "productId" : "0fafeb3e-e5ea-41b4-acda-1512c83fea5e",
+    "productName" : "Nasi Goreng",
+    "qty" : 1,
+    "price" : 15000
+  } ],
+  "timestamp" : [ 2025, 11, 18, 23, 9, 59, 599657829 ],
+  "total" : 15000
+} ]

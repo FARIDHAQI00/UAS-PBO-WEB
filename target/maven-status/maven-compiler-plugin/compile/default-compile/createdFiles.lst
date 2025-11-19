@@ -1,0 +1,16 @@
+id/univ/uaspbo/service/CrudService.class
+id/univ/uaspbo/util/DataLoader.class
+id/univ/uaspbo/controller/AuthController.class
+id/univ/uaspbo/service/AbstractService.class
+id/univ/uaspbo/model/Entity.class
+id/univ/uaspbo/model/Transaction.class
+id/univ/uaspbo/controller/UserController.class
+id/univ/uaspbo/service/ProductService.class
+id/univ/uaspbo/service/UserService.class
+id/univ/uaspbo/model/Transaction$TransactionItem.class
+id/univ/uaspbo/controller/AdminController.class
+id/univ/uaspbo/model/User.class
+id/univ/uaspbo/service/TransactionService.class
+id/univ/uaspbo/UasPboWebApplication.class
+id/univ/uaspbo/model/Product.class
+id/univ/uaspbo/repository/FileRepository.class

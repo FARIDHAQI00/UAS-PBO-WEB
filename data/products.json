@@ -1,0 +1,26 @@
+[ {
+  "id" : "0fafeb3e-e5ea-41b4-acda-1512c83fea5e",
+  "name" : "Nasi Goreng",
+  "price" : 15000,
+  "stock" : 5
+}, {
+  "id" : "48cc85bd-ea0a-409f-8939-4dfd43ea3e91",
+  "name" : "Mie Goreng",
+  "price" : 12000,
+  "stock" : 13
+}, {
+  "id" : "f1b8fd1a-1585-46eb-a28f-9bf1f0d0c110",
+  "name" : "Es Teh",
+  "price" : 5000,
+  "stock" : 30
+}, {
+  "id" : "4c88a06f-7aa5-411e-a35f-f6eb8fe362f8",
+  "name" : "nasgor pantai bali",
+  "price" : 50000,
+  "stock" : 5
+}, {
+  "id" : "8b575b1f-3d00-4bf0-9a58-36bb03508dcb",
+  "name" : "ice isomer",
+  "price" : 100000,
+  "stock" : 5
+} ]

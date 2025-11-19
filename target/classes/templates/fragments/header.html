@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Page Title -->
+    <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">
+        UAS PBO - Food Ordering System
+    </title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" th:href="@{/css/style.css?v=1}">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/}">🍽️ UAS PBO</a>
+
+        <ul class="navbar-nav">
+
+            <!-- ADMIN NAV -->
+            <li th:if="${session.user != null and session.user.role == 'ADMIN'}">
+                <a class="nav-link" th:href="@{/admin}">🏠 Dashboard</a>
+            </li>
+            <li th:if="${session.user != null and session.user.role == 'ADMIN'}">
+                <a class="nav-link" th:href="@{/admin/products}">📦 Products</a>
+            </li>
+            <li th:if="${session.user != null and session.user.role == 'ADMIN'}">
+                <a class="nav-link" th:href="@{/admin/transactions}">📊 Transactions</a>
+            </li>
+            <li th:if="${session.user != null and session.user.role == 'ADMIN'}">
+                <a class="nav-link" th:href="@{/admin/reports}">📈 Reports</a>
+            </li>
+            <li th:if="${session.user != null and session.user.role == 'ADMIN'}">
+                <a class="nav-link" th:href="@{/admin/users}">👥 Users</a>
+            </li>
+
+            <!-- USER NAV -->
+            <li th:if="${session.user != null and session.user.role == 'USER'}">
+                <a class="nav-link" th:href="@{/user}">🍽️ Menu</a>
+            </li>
+            <li th:if="${session.user != null and session.user.role == 'USER'}">
+                <a class="nav-link" th:href="@{/user/history}">📋 History</a>
+            </li>
+
+            <!-- LOGOUT -->
+            <li th:if="${session.user != null}">
+                <form th:action="@{/logout}" method="post" style="display: inline;">
+                    <button type="submit" class="btn btn-danger" style="margin-left: 1rem;">
+                        🚪 Logout
+                    </button>
+                </form>
+            </li>
+
+        </ul>
+    </div>
+</nav>
+
+<!-- CONTENT -->
+<div layout:fragment="content" class="fade-in">
+    <!-- Injected page content -->
+</div>
+
+</body>
+</html>
