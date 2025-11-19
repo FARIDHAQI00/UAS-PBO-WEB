@@ -13,14 +13,4 @@
   "name" : "Es Teh",
   "price" : 5000,
   "stock" : 30
-}, {
-  "id" : "4c88a06f-7aa5-411e-a35f-f6eb8fe362f8",
-  "name" : "nasgor pantai bali",
-  "price" : 50000,
-  "stock" : 5
-}, {
-  "id" : "8b575b1f-3d00-4bf0-9a58-36bb03508dcb",
-  "name" : "ice isomer",
-  "price" : 100000,
-  "stock" : 5
-} ]
+}]
