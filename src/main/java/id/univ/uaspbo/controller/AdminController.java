@@ -192,4 +192,69 @@ public class AdminController {
         // For manual save, we can reload or just redirect
         return "redirect:/admin";
     }
+    
+    /**
+     * Menangani penambahan produk baru dari form.
+     *
+     * @param s HTTP session
+     * @param name Nama produk
+     * @param price Harga produk
+     * @param stock Jumlah stok produk
+     * @return Redirect ke halaman produk atau login jika bukan admin
+     */
+    @PostMapping("/products/add")
+    public String addProduct(HttpSession s,
+                             @RequestParam String name,
+                             @RequestParam int price,
+                             @RequestParam int stock) {
+        if (!isAdmin(s)) return "redirect:/login";
+        id.univ.uaspbo.model.Product p = new id.univ.uaspbo.model.Product();
+        p.setName(name);
+        p.setPrice(price);
+        p.setStock(stock);
+        productService.add(p);
+        return "redirect:/admin/products";
+    }
+
+    /**
+     * Menangani pembaruan produk dari form.
+     *
+     * @param s HTTP session
+     * @param id ID produk yang diupdate
+     * @param name Nama produk
+     * @param price Harga produk
+     * @param stock Jumlah stok produk
+     * @return Redirect ke halaman produk atau login jika bukan admin
+     */
+    @PostMapping("/products/update")
+    public String updateProduct(HttpSession s,
+                                @RequestParam String id,
+                                @RequestParam String name,
+                                @RequestParam int price,
+                                @RequestParam int stock) {
+        if (!isAdmin(s)) return "redirect:/login";
+        id.univ.uaspbo.model.Product p = productService.findById(id);
+        if (p != null) {
+            p.setName(name);
+            p.setPrice(price);
+            p.setStock(stock);
+            productService.update(p);
+        }
+        return "redirect:/admin/products";
+    }
+
+    /**
+     * Menangani penghapusan produk dari form.
+     *
+     * @param s HTTP session
+     * @param id ID produk yang akan dihapus
+     * @return Redirect ke halaman produk atau login jika bukan admin
+     */
+    @PostMapping("/products/delete")
+    public String deleteProduct(HttpSession s,
+                                @RequestParam String id) {
+        if (!isAdmin(s)) return "redirect:/login";
+        productService.delete(id);
+        return "redirect:/admin/products";
+    }
 }
