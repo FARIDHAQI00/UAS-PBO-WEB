@@ -28,10 +28,6 @@
           <div class="stat-number" th:text="${transactions != null and !transactions.isEmpty() ? #numbers.formatInteger(#aggregates.avg(transactions.![total]), 0, 'COMMA') : '0'}">0</div>
           <div class="stat-label">Rerata Pesanan</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-number">0</div>
-          <div class="stat-label">Pesanan Tertinggi</div>
-        </div>
       </div>
 
       <!-- Transactions History -->

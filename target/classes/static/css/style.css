@@ -1078,7 +1078,6 @@ body {
 .quantity-input:focus {
   outline: none;
   border-color: var(--primary-color);
-  background: rgba(255, 255, 255, 0.9);
 }
 
 /* Enhanced Alerts */

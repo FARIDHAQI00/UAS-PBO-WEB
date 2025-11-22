@@ -113,4 +113,15 @@
   } ],
   "timestamp" : [ 2025, 11, 21, 21, 31, 42, 567082195 ],
   "total" : 15000
+}, {
+  "id" : "bffc90b5-af7d-40f6-a903-b34cc1a19595",
+  "userId" : "6130adaf-3d08-40bb-96dc-ea89812a93b8",
+  "items" : [ {
+    "productId" : "0fafeb3e-e5ea-41b4-acda-1512c83fea5e",
+    "productName" : "Nasi Goreng",
+    "qty" : 1,
+    "price" : 15000
+  } ],
+  "timestamp" : [ 2025, 11, 22, 19, 46, 37, 276998065 ],
+  "total" : 15000
 } ]
