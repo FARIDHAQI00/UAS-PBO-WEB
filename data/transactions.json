@@ -91,4 +91,26 @@
   } ],
   "timestamp" : [ 2025, 11, 18, 23, 9, 59, 599657829 ],
   "total" : 15000
+}, {
+  "id" : "b89edd2e-923e-48f3-8b64-90815914d04e",
+  "userId" : "6130adaf-3d08-40bb-96dc-ea89812a93b8",
+  "items" : [ {
+    "productId" : "48cc85bd-ea0a-409f-8939-4dfd43ea3e91",
+    "productName" : "Mie Goreng",
+    "qty" : 2,
+    "price" : 12000
+  } ],
+  "timestamp" : [ 2025, 11, 21, 21, 26, 50, 127121912 ],
+  "total" : 24000
+}, {
+  "id" : "b366c46f-010d-464f-b6ce-61e6ff653242",
+  "userId" : "6130adaf-3d08-40bb-96dc-ea89812a93b8",
+  "items" : [ {
+    "productId" : "0fafeb3e-e5ea-41b4-acda-1512c83fea5e",
+    "productName" : "Nasi Goreng",
+    "qty" : 1,
+    "price" : 15000
+  } ],
+  "timestamp" : [ 2025, 11, 21, 21, 31, 42, 567082195 ],
+  "total" : 15000
 } ]

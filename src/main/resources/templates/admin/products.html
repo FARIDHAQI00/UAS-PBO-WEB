@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/header}">
 <head>
-  <title>Manage Products - UAS PBO</title>
+  <title>Kelola Produk - UAS PBO</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -11,37 +11,37 @@
 <body>
   <div layout:fragment="content">
     <div class="container admin-dashboard">
-      <h1 class="page-header">📦 Product Management</h1>
+      <h1 class="page-header">Manajemen Produk</h1>
 
       <!-- Add Product Form -->
       <div class="card">
         <div class="card-header">
-          ➕ Add New Product
+          Tambah Produk Baru
         </div>
         <div class="card-body">
           <form th:action="@{/admin/products/add}" method="post">
             <div class="row">
               <div class="col">
                 <div class="form-group">
-                  <label class="form-label" for="name">Product Name</label>
-                  <input type="text" id="name" name="name" class="form-control" placeholder="Enter product name" required />
+                  <label class="form-label" for="name">Nama Produk</label>
+                  <input type="text" id="name" name="name" class="form-control" placeholder="Masukkan nama produk" required />
                 </div>
               </div>
               <div class="col">
                 <div class="form-group">
-                  <label class="form-label" for="price">Price (Rp)</label>
-                  <input type="number" id="price" name="price" class="form-control" placeholder="Enter price" min="0" required />
+                  <label class="form-label" for="price">Harga (Rp)</label>
+                  <input type="number" id="price" name="price" class="form-control" placeholder="Masukkan harga" min="0" required />
                 </div>
               </div>
               <div class="col">
                 <div class="form-group">
-                  <label class="form-label" for="stock">Stock Quantity</label>
-                  <input type="number" id="stock" name="stock" class="form-control" placeholder="Enter stock" min="0" required />
+                  <label class="form-label" for="stock">Jumlah Stok</label>
+                  <input type="number" id="stock" name="stock" class="form-control" placeholder="Masukkan stok" min="0" required />
                 </div>
               </div>
             </div>
             <button type="submit" class="btn btn-success">
-              ➕ Add Product
+              Tambah Produk
             </button>
           </form>
         </div>
@@ -50,42 +50,42 @@
       <!-- Products List -->
       <div class="card">
         <div class="card-header">
-          📋 All Products ([[${#lists.size(products)}]])
+          Semua Produk ([[${#lists.size(products)}]])
         </div>
         <div class="card-body">
           <div th:if="${#lists.isEmpty(products)}" class="alert alert-warning">
-            ⚠️ No products available. Add your first product above!
+            Tidak ada produk tersedia. Tambahkan produk pertama Anda di atas!
           </div>
 
           <div th:if="${!#lists.isEmpty(products)}" class="product-grid">
             <div th:each="product : ${products}" class="product-card">
               <div class="product-header">
-                <h3 th:text="${product.name}">Product Name</h3>
+                <h3 th:text="${product.name}">Nama Produk</h3>
                 <div class="product-price">Rp [[${#numbers.formatInteger(product.price, 0, 'COMMA')}]]</div>
               </div>
               <div class="product-body">
                 <div class="product-stock" th:class="'product-stock ' + (${product.stock} > 10 ? 'available' : (${product.stock} > 0 ? 'low' : 'out'))"
-                     th:text="'Stock: ' + ${product.stock}">Stock</div>
+                     th:text="'Stok: ' + ${product.stock}">Stok</div>
 
                 <!-- Edit Form -->
                 <form th:action="@{/admin/products/update}" method="post">
                   <input type="hidden" name="id" th:value="${product.id}" />
                   <div class="edit-form-grid">
                     <div class="form-group">
-                      <label class="form-label">Name</label>
-                      <input type="text" name="name" th:value="${product.name}" class="form-control" placeholder="Name" required />
+                      <label class="form-label">Nama</label>
+                      <input type="text" name="name" th:value="${product.name}" class="form-control" placeholder="Nama" required />
                     </div>
                     <div class="form-group">
-                      <label class="form-label">Price</label>
-                      <input type="number" name="price" th:value="${product.price}" class="form-control" placeholder="Price" min="0" required />
+                      <label class="form-label">Harga</label>
+                      <input type="number" name="price" th:value="${product.price}" class="form-control" placeholder="Harga" min="0" required />
                     </div>
                     <div class="form-group">
-                      <label class="form-label">Stock</label>
-                      <input type="number" name="stock" th:value="${product.stock}" class="form-control" placeholder="Stock" min="0" required />
+                      <label class="form-label">Stok</label>
+                      <input type="number" name="stock" th:value="${product.stock}" class="form-control" placeholder="Stok" min="0" required />
                     </div>
                   </div>
                   <button type="submit" class="btn btn-warning btn-sm">
-                    ✏️ Update
+                    Perbarui
                   </button>
                 </form>
 
@@ -93,8 +93,8 @@
                 <form th:action="@{/admin/products/delete}" method="post">
                   <input type="hidden" name="id" th:value="${product.id}" />
                   <button type="submit" class="btn btn-danger btn-sm"
-                          onclick="return confirm('Are you sure you want to delete this product?');">
-                    🗑️ Delete
+                          onclick="return confirm('Apakah Anda yakin ingin menghapus produk ini?');">
+                    Hapus
                   </button>
                 </form>
               </div>
@@ -106,19 +106,19 @@
       <!-- Quick Actions -->
       <div class="card">
         <div class="card-header">
-          ⚡ Quick Actions
+          Tindakan Cepat
         </div>
         <div class="card-body">
           <div class="d-flex gap-3 flex-wrap">
             <a th:href="@{/admin}" class="btn btn-secondary">
-              🏠 Back to Dashboard
+              Kembali ke Dashboard
             </a>
             <a th:href="@{/admin/transactions}" class="btn btn-primary">
-              📊 View Transactions
+              Lihat Transaksi
             </a>
             <form th:action="@{/admin/save}" method="post">
               <button type="submit" class="btn btn-success">
-                💾 Save Changes
+                Simpan Perubahan
               </button>
             </form>
           </div>

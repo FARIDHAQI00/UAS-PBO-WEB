@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/header}">
 <head>
-  <title>All Transactions - UAS PBO</title>
+  <title>Semua Transaksi - UAS PBO</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -11,36 +11,36 @@
 <body>
   <div layout:fragment="content">
     <div class="container admin-dashboard">
-      <h1 class="page-header">📊 Transaction History</h1>
+      <h1 class="page-header">Riwayat Transaksi</h1>
 
       <!-- Stats Overview -->
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-number" th:text="${#lists.size(transactions)}">0</div>
-          <div class="stat-label">Total Transactions</div>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number" th:text="${#lists.size(transactions)}">0</div>
+            <div class="stat-label">Total Transaksi</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">Rp [[${#numbers.formatInteger(#aggregates.sum(transactions.![total]), 0, 'COMMA')}]]</div>
+            <div class="stat-label">Total Pendapatan</div>
+          </div>
+          <!-- <div class="stat-card">
+            <div class="stat-number">1</div>
+            <div class="stat-label">Pelanggan Aktif</div>
+          </div> -->
+          <div class="stat-card">
+            <div class="stat-number" th:text="${transactions != null and !transactions.isEmpty() ? #numbers.formatInteger(#aggregates.avg(transactions.![total]), 0, 'COMMA') : '0'}">0</div>
+            <div class="stat-label">Nilai Rata-rata Pesanan</div>
+          </div>
         </div>
-        <div class="stat-card">
-          <div class="stat-number">Rp [[${#numbers.formatInteger(#aggregates.sum(transactions.![total]), 0, 'COMMA')}]]</div>
-          <div class="stat-label">Total Revenue</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number">1</div>
-          <div class="stat-label">Active Customers</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number" th:text="${transactions != null and !transactions.isEmpty() ? #numbers.formatInteger(#aggregates.avg(transactions.![total]), 0, 'COMMA') : '0'}">0</div>
-          <div class="stat-label">Avg Order Value</div>
-        </div>
-      </div>
 
       <!-- Transactions Table -->
       <div class="card">
         <div class="card-header">
-          📋 All Transactions
+          Semua Transaksi
         </div>
         <div class="card-body">
           <div th:if="${#lists.isEmpty(transactions)}" class="alert alert-warning">
-            ⚠️ No transactions found
+            Tidak ditemukan transaksi
           </div>
 
           <div th:if="${!#lists.isEmpty(transactions)}">
@@ -48,11 +48,11 @@
               <table class="table">
                 <thead>
                   <tr>
-                    <th>Transaction ID</th>
-                    <th>Customer ID</th>
-                    <th>Date & Time</th>
-                    <th>Items</th>
-                    <th>Total Amount</th>
+                    <th>ID Transaksi</th>
+                    <th>ID Pelanggan</th>
+                    <th>Tanggal & Waktu</th>
+                    <th>Item</th>
+                    <th>Total Harga</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -97,22 +97,22 @@
       <!-- Quick Actions -->
       <div class="card">
         <div class="card-header">
-          ⚡ Quick Actions
+          Tindakan Cepat
         </div>
         <div class="card-body">
           <div class="d-flex gap-3 flex-wrap">
             <a th:href="@{/admin}" class="btn btn-secondary">
-              🏠 Back to Dashboard
+              Kembali ke Dashboard
             </a>
             <a th:href="@{/admin/reports}" class="btn btn-primary">
-              📈 Detailed Reports
+              Laporan Detail
             </a>
             <a th:href="@{/admin/products}" class="btn btn-success">
-              📦 Manage Products
+              Kelola Produk
             </a>
             <form th:action="@{/admin/save}" method="post">
               <button type="submit" class="btn btn-warning">
-                💾 Save Data
+                Simpan Data
               </button>
             </form>
           </div>

@@ -7,7 +7,7 @@
 
     <!-- Page Title -->
     <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">
-        UAS PBO - Food Ordering System
+        Sistem Kasir Pemesanan Makanan
     </title>
 
     <!-- Fonts -->
@@ -25,40 +25,40 @@
 <!-- NAVBAR -->
 <nav class="navbar">
     <div class="container">
-        <a class="navbar-brand" th:href="@{/}">🍽️ UAS PBO</a>
+        <a class="navbar-brand" th:href="@{/}">UAS PBO</a>
 
         <ul class="navbar-nav">
 
             <!-- ADMIN NAV -->
             <li th:if="${session.user != null and session.user.role == 'ADMIN'}">
-                <a class="nav-link" th:href="@{/admin}">🏠 Dashboard</a>
+                <a class="nav-link" th:href="@{/admin}">Dashboard</a>
             </li>
             <li th:if="${session.user != null and session.user.role == 'ADMIN'}">
-                <a class="nav-link" th:href="@{/admin/products}">📦 Products</a>
+                <a class="nav-link" th:href="@{/admin/products}">Produk</a>
             </li>
             <li th:if="${session.user != null and session.user.role == 'ADMIN'}">
-                <a class="nav-link" th:href="@{/admin/transactions}">📊 Transactions</a>
+                <a class="nav-link" th:href="@{/admin/transactions}">Transaksi</a>
             </li>
             <li th:if="${session.user != null and session.user.role == 'ADMIN'}">
-                <a class="nav-link" th:href="@{/admin/reports}">📈 Reports</a>
+                <a class="nav-link" th:href="@{/admin/reports}">Laporan</a>
             </li>
             <li th:if="${session.user != null and session.user.role == 'ADMIN'}">
-                <a class="nav-link" th:href="@{/admin/users}">👥 Users</a>
+                <a class="nav-link" th:href="@{/admin/users}">Pengguna</a>
             </li>
 
             <!-- USER NAV -->
             <li th:if="${session.user != null and session.user.role == 'USER'}">
-                <a class="nav-link" th:href="@{/user}">🍽️ Menu</a>
+                <a class="nav-link" th:href="@{/user}">Menu</a>
             </li>
             <li th:if="${session.user != null and session.user.role == 'USER'}">
-                <a class="nav-link" th:href="@{/user/history}">📋 History</a>
+                <a class="nav-link" th:href="@{/user/history}">Riwayat</a>
             </li>
 
             <!-- LOGOUT -->
             <li th:if="${session.user != null}">
                 <form th:action="@{/logout}" method="post" style="display: inline;">
                     <button type="submit" class="btn btn-danger" style="margin-left: 1rem;">
-                        🚪 Logout
+                        Keluar
                     </button>
                 </form>
             </li>

@@ -11,39 +11,39 @@
 <body>
   <div layout:fragment="content">
     <div class="container">
-      <h1 class="page-header">🍽️ Our Menu</h1>
-      <p class="welcome-subtitle">Discover delicious food options and place your order</p>
+      <h1 class="page-header">Menu Kami</h1>
+      <p class="welcome-subtitle">Temukan pilihan makanan lezat dan buat pesanan Anda</p>
 
       <!-- Search and Filter -->
       <div class="card">
         <div class="card-header">
-          🔍 Search & Filter
+          Pencarian & Filter
         </div>
         <div class="card-body">
           <form th:action="@{/user}" method="get">
             <div class="row">
               <div class="col-2">
                 <div class="form-group">
-                  <label class="form-label" for="search">Search Menu</label>
+                  <label class="form-label" for="search">Cari Menu</label>
                   <input type="text" id="search" name="search" class="form-control"
-                         th:value="${search}" placeholder="Enter menu name..." />
+                         th:value="${search}" placeholder="Masukkan nama menu..." />
                 </div>
               </div>
               <div class="col">
                 <div class="form-group">
-                  <label class="form-label" for="sort">Sort By</label>
+                  <label class="form-label" for="sort">Urutkan Berdasarkan</label>
                   <select id="sort" name="sort" class="form-select">
-                    <option value="">Default Order</option>
-                    <option value="name_asc" th:selected="${sort == 'name_asc'}">📝 Name A-Z</option>
-                    <option value="name_desc" th:selected="${sort == 'name_desc'}">📝 Name Z-A</option>
-                    <option value="price_asc" th:selected="${sort == 'price_asc'}">💰 Price Low-High</option>
-                    <option value="price_desc" th:selected="${sort == 'price_desc'}">💰 Price High-Low</option>
+                    <option value="">Urutan Default</option>
+                    <option value="name_asc" th:selected="${sort == 'name_asc'}">Nama A-Z</option>
+                    <option value="name_desc" th:selected="${sort == 'name_desc'}">Nama Z-A</option>
+                    <option value="price_asc" th:selected="${sort == 'price_asc'}">Harga Rendah-Tinggi</option>
+                    <option value="price_desc" th:selected="${sort == 'price_desc'}">Harga Tinggi-Rendah</option>
                   </select>
                 </div>
               </div>
             </div>
             <button type="submit" class="btn btn-primary">
-              🔍 Apply Filters
+              Terapkan Filter
             </button>
           </form>
         </div>
@@ -51,7 +51,7 @@
 
       <!-- Products Grid -->
       <div th:if="${#lists.isEmpty(products)}" class="alert alert-warning">
-        ⚠️ No menu items available at the moment. Please check back later!
+        Tidak ada menu tersedia saat ini. Silakan cek kembali nanti!
       </div>
 
       <div th:if="${!#lists.isEmpty(products)}">
@@ -59,22 +59,22 @@
           <div class="product-grid">
             <div th:each="product : ${products}" class="product-card">
               <div class="product-header">
-                <h3 th:text="${product.name}">Product Name</h3>
+                <h3 th:text="${product.name}">Nama Produk</h3>
                 <div class="product-price">Rp [[${#numbers.formatInteger(product.price, 0, 'COMMA')}]]</div>
               </div>
               <div class="product-body">
                 <div class="product-stock" th:class="'product-stock ' + (${product.stock} > 10 ? 'available' : (${product.stock} > 0 ? 'low' : 'out'))"
-                     th:text="'Stock: ' + ${product.stock}">Stock</div>
+                     th:text="'Stok: ' + ${product.stock}">Stok</div>
 
                 <div class="form-group">
-                  <label class="form-label">Quantity:</label>
+                  <label class="form-label">Jumlah:</label>
                   <input type="hidden" name="productId" th:value="${product.id}" />
                   <input class="quantity-input" type="number" name="qty" min="0" th:max="${product.stock}"
                          value="0" placeholder="0" />
                 </div>
 
                 <div class="text-muted">
-                  💡 Enter quantity to add to cart
+                  Masukkan jumlah untuk ditambahkan ke keranjang
                 </div>
               </div>
             </div>
@@ -84,10 +84,10 @@
           <div class="card">
             <div class="card-body text-center">
               <button type="submit" class="btn btn-success">
-                🛒 Proceed to Checkout
+                Lanjut ke Pembayaran
               </button>
               <div class="text-muted">
-                Items with quantity > 0 will be added to your order
+                Item dengan jumlah > 0 akan ditambahkan ke pesanan Anda
               </div>
             </div>
           </div>
@@ -97,19 +97,19 @@
       <!-- User Actions -->
       <div class="card">
         <div class="card-header">
-          ⚡ Quick Actions
+          Tindakan Cepat
         </div>
         <div class="card-body">
           <div class="d-flex gap-3 flex-wrap justify-content-center">
             <a th:href="@{/user/history}" class="btn btn-primary">
-              📋 My Order History
+              Riwayat Pesanan Saya
             </a>
             <a th:href="@{/user}" class="btn btn-secondary">
-              🔄 Refresh Menu
+              Segarkan Menu
             </a>
             <form th:action="@{/logout}" method="post">
               <button type="submit" class="btn btn-danger">
-                🚪 Logout
+                Keluar
               </button>
             </form>
           </div>

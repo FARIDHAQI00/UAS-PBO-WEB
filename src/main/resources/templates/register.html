@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8" />
-  <title>Register - UAS PBO</title>
+  <title>Registrasi - UAS PBO</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -51,12 +51,6 @@
       align-items: center;
       justify-content: center;
       gap: 0.5rem;
-    }
-
-    .register-container h2::before {
-      content: "📝";
-      font-size: 2rem;
-      animation: bounce 2s infinite;
     }
 
     .form-group {
@@ -170,12 +164,6 @@
       text-decoration: underline;
     }
 
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-      40% { transform: translateY(-5px); }
-      60% { transform: translateY(-3px); }
-    }
-
     @media (max-width: 480px) {
       .register-container {
         padding: 30px 20px;
@@ -190,30 +178,30 @@
 </head>
 <body>
   <div class="register-container">
-    <h2>UAS PBO - Register</h2>
+    <h2>UAS PBO - Registrasi</h2>
     <form th:action="@{/register}" method="post">
       <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="Enter your email" required />
+        <input type="email" id="email" name="email" placeholder="Masukkan email Anda" required />
       </div>
       <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" placeholder="Enter your password" required />
+        <label for="password">Kata Sandi</label>
+        <input type="password" id="password" name="password" placeholder="Masukkan kata sandi Anda" required />
       </div>
       <div class="form-group">
-        <label for="confirmPassword">Confirm Password</label>
-        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required />
+        <label for="confirmPassword">Konfirmasi Kata Sandi</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Konfirmasi kata sandi Anda" required />
       </div>
-      <button type="submit" class="register-btn">📝 Register</button>
+      <button type="submit" class="register-btn">Daftar</button>
     </form>
     <div th:if="${error}" class="error-message">
-      ⚠️ [[${error}]]
+      Terjadi kesalahan!
     </div>
     <div th:if="${success}" class="success-message">
-      ✅ [[${success}]]
+      Berhasil!
     </div>
     <div class="login-link">
-      Already have an account? <a th:href="@{/login}">Sign In</a>
+      Sudah punya akun? <a th:href="@{/login}">Masuk</a>
     </div>
   </div>
 </body>

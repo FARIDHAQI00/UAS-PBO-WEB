@@ -8,14 +8,4 @@
   "email" : "user@uas",
   "password" : "user123",
   "role" : "USER"
-}, {
-  "id" : "9213d0ca-91b7-4e0d-bad1-52585a25e3dc",
-  "email" : "farid@uas",
-  "password" : "123",
-  "role" : "USER"
-}, {
-  "id" : "9a473168-6799-4d1e-9200-4b751882c800",
-  "email" : "upa@uas",
-  "password" : "123",
-  "role" : "USER"
-} ]
+}]

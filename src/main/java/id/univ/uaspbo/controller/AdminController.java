@@ -1,6 +1,5 @@
 package id.univ.uaspbo.controller;
 
-import id.univ.uaspbo.model.Product;
 import id.univ.uaspbo.service.ProductService;
 import id.univ.uaspbo.service.TransactionService;
 import id.univ.uaspbo.service.UserService;
@@ -77,89 +76,7 @@ public class AdminController {
     }
 
     /**
-     * Adds a new product.
-     *
-     * @param s HTTP session
-     * @param name Product name
-     * @param price Product price
-     * @param stock Product stock quantity
-     * @return Redirect to products page or login if not admin
-     */
-    @PostMapping("/products/add")
-    public String addProduct(HttpSession s, @RequestParam String name, @RequestParam int price, @RequestParam int stock) {
-        if (!isAdmin(s)) return "redirect:/login";
-        Product p = new Product();
-        p.setName(name); p.setPrice(price); p.setStock(stock);
-        productService.add(p);
-        return "redirect:/admin/products";
-    }
-
-    /**
-     * Updates an existing product.
-     *
-     * @param s HTTP session
-     * @param id Product ID
-     * @param name New product name
-     * @param price New product price
-     * @param stock New product stock quantity
-     * @return Redirect to products page or login if not admin
-     */
-    @PostMapping("/products/update")
-    public String updateProduct(HttpSession s, @RequestParam String id, @RequestParam String name, @RequestParam int price, @RequestParam int stock) {
-        if (!isAdmin(s)) return "redirect:/login";
-        Product p = productService.findById(id);
-        if (p != null) {
-            p.setName(name); p.setPrice(price); p.setStock(stock);
-            productService.update(p);
-        }
-        return "redirect:/admin/products";
-    }
-
-    /**
-     * Deletes a product.
-     *
-     * @param s HTTP session
-     * @param id Product ID to delete
-     * @return Redirect to products page or login if not admin
-     */
-    @PostMapping("/products/delete")
-    public String deleteProduct(HttpSession s, @RequestParam String id) {
-        if (!isAdmin(s)) return "redirect:/login";
-        productService.delete(id);
-        return "redirect:/admin/products";
-    }
-
-    /**
-     * Displays all transactions.
-     *
-     * @param s HTTP session
-     * @param m Model for view attributes
-     * @return Transactions view or redirect to login if not admin
-     */
-    @GetMapping("/transactions")
-    public String transactions(HttpSession s, Model m) {
-        if (!isAdmin(s)) return "redirect:/login";
-        m.addAttribute("transactions", transactionService.getAll());
-        return "admin/transactions";
-    }
-
-    /**
-     * Displays revenue reports.
-     *
-     * @param s HTTP session
-     * @param m Model for view attributes
-     * @return Reports view or redirect to login if not admin
-     */
-    @GetMapping("/reports")
-    public String reports(HttpSession s, Model m) {
-        if (!isAdmin(s)) return "redirect:/login";
-        int totalRevenue = transactionService.getTotalRevenue();
-        m.addAttribute("totalRevenue", totalRevenue);
-        return "admin/reports";
-    }
-
-    /**
-     * Displays all users.
+     * Displays the users page.
      *
      * @param s HTTP session
      * @param m Model for view attributes
@@ -171,6 +88,36 @@ public class AdminController {
         m.addAttribute("users", userService.getAll());
         m.addAttribute("transactions", transactionService.getAll());
         return "admin/users";
+    }
+
+    /**
+     * Displays the reports page.
+     *
+     * @param s HTTP session
+     * @param m Model for view attributes
+     * @return Reports view or redirect to login if not admin
+     */
+    @GetMapping("/reports")
+    public String reports(HttpSession s, Model m) {
+        if (!isAdmin(s)) return "redirect:/login";
+        int totalRevenue = transactionService.getTotalRevenue();
+        m.addAttribute("totalRevenue", totalRevenue);
+        // In the earlier version, transactions attribute was not set to avoid errors
+        return "admin/reports";
+    }
+
+    /**
+     * Displays the transactions page.
+     *
+     * @param s HTTP session
+     * @param m Model for view attributes
+     * @return Transactions view or redirect to login if not admin
+     */
+    @GetMapping("/transactions")
+    public String transactions(HttpSession s, Model m) {
+        if (!isAdmin(s)) return "redirect:/login";
+        m.addAttribute("transactions", transactionService.getAll());
+        return "admin/transactions";
     }
 
     /**

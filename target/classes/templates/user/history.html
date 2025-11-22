@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/header}">
 <head>
-  <title>My Order History - UAS PBO</title>
+  <title>Riwayat Pesanan Saya - UAS PBO</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -11,37 +11,37 @@
 <body>
   <div layout:fragment="content">
     <div class="container">
-      <h1 class="page-header">📋 My Order History</h1>
-      <p class="welcome-subtitle">Track your previous orders and reorder your favorites</p>
+      <h1 class="page-header">Riwayat Pesanan Saya</h1>
+      <p class="welcome-subtitle">Lacak pesanan sebelumnya dan pesan ulang favorit Anda</p>
 
       <!-- User Stats -->
       <div class="stats-grid">
         <div class="stat-card">
           <div class="stat-number" th:text="${#lists.size(transactions)}">0</div>
-          <div class="stat-label">Total Orders</div>
+          <div class="stat-label">Total Pesanan</div>
         </div>
         <div class="stat-card">
           <div class="stat-number">Rp [[${#numbers.formatInteger(#aggregates.sum(transactions.![total]), 0, 'COMMA')}]]</div>
-          <div class="stat-label">Total Spent</div>
+          <div class="stat-label">Total Pengeluaran</div>
         </div>
         <div class="stat-card">
           <div class="stat-number" th:text="${transactions != null and !transactions.isEmpty() ? #numbers.formatInteger(#aggregates.avg(transactions.![total]), 0, 'COMMA') : '0'}">0</div>
-          <div class="stat-label">Average Order</div>
+          <div class="stat-label">Rerata Pesanan</div>
         </div>
         <div class="stat-card">
           <div class="stat-number">0</div>
-          <div class="stat-label">Highest Order</div>
+          <div class="stat-label">Pesanan Tertinggi</div>
         </div>
       </div>
 
       <!-- Transactions History -->
       <div class="card">
         <div class="card-header">
-          🛒 My Orders
+          Pesanan Saya
         </div>
         <div class="card-body">
           <div th:if="${#lists.isEmpty(transactions)}" class="alert alert-warning">
-            ⚠️ You haven't placed any orders yet. <a th:href="@{/user}" class="alert-link">Browse our menu</a> to place your first order!
+            Anda belum melakukan pesanan. <a th:href="@{/user}" class="alert-link">Jelajahi menu kami</a> untuk melakukan pemesanan pertama Anda!
           </div>
 
           <div th:if="${!#lists.isEmpty(transactions)}">
@@ -49,7 +49,7 @@
               <div class="card-header transaction-header">
                 <div class="d-flex justify-content-between align-items-center">
                   <div>
-                    <strong>Order #</strong><code th:text="${transaction.id}"></code>
+                    <strong>Pesanan #</strong><code th:text="${transaction.id}"></code>
                   </div>
                   <div class="text-end">
                     <div class="transaction-total">Rp [[${#numbers.formatInteger(transaction.total, 0, 'COMMA')}]]</div>
@@ -58,14 +58,14 @@
                 </div>
               </div>
               <div class="card-body">
-                <h5 class="text-dark mb-3">📦 Order Items:</h5>
+                <h5 class="text-dark mb-3">Item Pesanan:</h5>
                 <div th:each="item : ${transaction.items}" class="order-item">
                   <div class="d-flex justify-content-between align-items-center">
                     <div>
                       <span th:text="${item.productName}" class="fw-bold text-dark"></span>
                       <br>
                       <small class="text-muted">
-                        Quantity: <span th:text="${item.qty}" class="fw-500"></span> ×
+                        Jumlah: <span th:text="${item.qty}" class="fw-500"></span> ×
                         Rp [[${#numbers.formatInteger(item.price, 0, 'COMMA')}]]
                       </small>
                     </div>
@@ -81,9 +81,9 @@
 
                 <div class="d-flex justify-content-between align-items-center">
                   <div>
-                    <span class="text-muted">Order Date:</span>
+                    <span class="text-muted">Tanggal Pesanan:</span>
                     <strong th:text="${#temporals.format(transaction.timestamp, 'EEEE, dd MMMM yyyy')}"></strong>
-                    <span class="text-muted">at</span>
+                    <span class="text-muted">pukul</span>
                     <strong th:text="${#temporals.format(transaction.timestamp, 'HH:mm')}"></strong>
                   </div>
                   <div class="text-end">
@@ -101,15 +101,15 @@
       <!-- Quick Actions -->
       <div class="card">
         <div class="card-header">
-          ⚡ Quick Actions
+          Tindakan Cepat
         </div>
         <div class="card-body">
           <div class="d-flex gap-3 flex-wrap justify-content-center">
             <a th:href="@{/user}" class="btn btn-primary">
-              🍽️ Order More Food
+              Pesan Makanan Lagi
             </a>
             <a th:href="@{/user/history}" class="btn btn-secondary">
-              🔄 Refresh History
+              Segarkan Riwayat
             </a>
           </div>
         </div>

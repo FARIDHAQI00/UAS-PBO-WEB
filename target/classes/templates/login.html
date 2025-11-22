@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8" />
-  <title>Login - UAS PBO</title>
+  <title>Masuk - UAS PBO</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -51,12 +51,6 @@
       align-items: center;
       justify-content: center;
       gap: 0.5rem;
-    }
-
-    .login-container h2::before {
-      content: "🍽️";
-      font-size: 2rem;
-      animation: bounce 2s infinite;
     }
 
     .form-group {
@@ -177,28 +171,28 @@
 </head>
 <body>
   <div class="login-container">
-    <h2>UAS PBO - Food Ordering</h2>
+    <h2>Sistem Kasir Pemesanan Makanan</h2>
     <form th:action="@{/login}" method="post">
       <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="Enter your email" required />
+        <input type="email" id="email" name="email" placeholder="Masukkan email Anda" required />
       </div>
       <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" placeholder="Enter your password" required />
+        <label for="password">Kata Sandi</label>
+        <input type="password" id="password" name="password" placeholder="Masukkan kata sandi Anda" required />
       </div>
-      <button type="submit" class="login-btn">🚀 Sign In</button>
+      <button type="submit" class="login-btn">Masuk</button>
     </form>
     <div th:if="${error}" class="error-message">
-      ⚠️ [[${error}]]
+      [[${error}]]
     </div>
     <div class="info-text">
-      <strong>Default Accounts:</strong><br>
+      <strong>Akun Default:</strong><br>
       Admin: admin@uas / admin123<br>
-      User: user@uas / user123
+      Pengguna: user@uas / user123
     </div>
     <div class="login-link">
-      Don't have an account? <a th:href="@{/register}">Register here</a>
+      Belum punya akun? <a th:href="@{/register}">Daftar di sini</a>
     </div>
   </div>
 </body>

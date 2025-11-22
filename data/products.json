@@ -2,15 +2,15 @@
   "id" : "0fafeb3e-e5ea-41b4-acda-1512c83fea5e",
   "name" : "Nasi Goreng",
   "price" : 15000,
-  "stock" : 5
+  "stock" : 4
 }, {
   "id" : "48cc85bd-ea0a-409f-8939-4dfd43ea3e91",
   "name" : "Mie Goreng",
   "price" : 12000,
-  "stock" : 13
+  "stock" : 11
 }, {
   "id" : "f1b8fd1a-1585-46eb-a28f-9bf1f0d0c110",
   "name" : "Es Teh",
   "price" : 5000,
   "stock" : 30
-}]
+} ]

@@ -2,31 +2,31 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/header}">
 <head>
-  <title>Admin Dashboard - UAS PBO</title>
+  <title>Dashboard Admin - UAS PBO</title>
 </head>
 <body>
   <div layout:fragment="content">
     <div class="container admin-dashboard">
-      <h1 class="page-header"> Admin Dashboard</h1>
-      <p class="welcome-subtitle">Manage your food ordering system with powerful admin tools</p>
+      <h1 class="page-header">Dashboard Admin</h1>
+      <p class="welcome-subtitle">Kelola sistem pemesanan makanan Anda dengan alat admin yang powerful</p>
 
       <!-- Stats Cards -->
       <div class="stats-grid">
         <div class="stat-card">
           <div class="stat-number" th:text="${#lists.size(products)}">0</div>
-          <div class="stat-label">Total Products</div>
+          <div class="stat-label">Total Produk</div>
         </div>
         <div class="stat-card">
           <div class="stat-number" th:text="${#lists.size(transactions)}">0</div>
-          <div class="stat-label">Total Transactions</div>
+          <div class="stat-label">Total Transaksi</div>
         </div>
         <div class="stat-card">
           <div class="stat-number" th:text="${#lists.size(users)}">0</div>
-          <div class="stat-label">Total Users</div>
+          <div class="stat-label">Total Pengguna</div>
         </div>
         <div class="stat-card">
           <div class="stat-number">Rp [[${#numbers.formatInteger(#aggregates.sum(transactions.![total]), 0, 'COMMA')}]]</div>
-          <div class="stat-label">Total Revenue</div>
+          <div class="stat-label">Total Pendapatan</div>
         </div>
       </div>
 
@@ -35,28 +35,28 @@
         <div class="col">
           <div class="card">
             <div class="card-header">
-              📦 Recent Products
+              Produk Terbaru
             </div>
             <div class="card-body">
               <div th:if="${#lists.isEmpty(products)}" class="alert alert-warning">
-                ⚠️ No products available
+                Tidak ada produk tersedia
               </div>
               <div th:if="${!#lists.isEmpty(products)}">
                 <div th:each="product, iterStat : ${products}"
                      th:if="${iterStat.index < 5}"
                      class="product-card">
                   <div class="product-header">
-                    <h3 th:text="${product.name}">Product Name</h3>
+                    <h3 th:text="${product.name}">Nama Produk</h3>
                     <div class="product-price">Rp [[${#numbers.formatInteger(product.price, 0, 'COMMA')}]]</div>
                   </div>
                   <div class="product-body">
                     <div class="product-stock" th:class="'product-stock ' + (${product.stock} > 10 ? 'available' : (${product.stock} > 0 ? 'low' : 'out'))"
-                         th:text="'Stock: ' + ${product.stock}">Stock</div>
+                         th:text="'Stok: ' + ${product.stock}">Stok</div>
                   </div>
                 </div>
               </div>
               <a th:href="@{/admin/products}" class="btn btn-primary w-100">
-                📦 Manage All Products
+                Kelola Semua Produk
               </a>
             </div>
           </div>
@@ -66,35 +66,35 @@
         <div class="col">
           <div class="card">
             <div class="card-header">
-              📊 Recent Transactions
+              Transaksi Terbaru
             </div>
             <div class="card-body">
               <div th:if="${#lists.isEmpty(transactions)}" class="alert alert-warning">
-                ⚠️ No transactions yet
+                Belum ada transaksi
               </div>
               <div th:if="${!#lists.isEmpty(transactions)}">
                 <table class="table">
                   <thead>
                     <tr>
                       <th>ID</th>
-                      <th>User</th>
+                      <th>Pengguna</th>
                       <th>Total</th>
-                      <th>Date</th>
+                      <th>Tanggal</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr th:each="transaction, iterStat : ${transactions}"
                         th:if="${iterStat.index < 5}">
                       <td><code th:text="${transaction.id}"></code></td>
-                      <td th:text="${transaction.userId}">User</td>
+                      <td th:text="${transaction.userId}">Pengguna</td>
                       <td>Rp [[${#numbers.formatInteger(transaction.total, 0, 'COMMA')}]]</td>
-                      <td th:text="${#temporals.format(transaction.timestamp, 'dd/MM/yyyy HH:mm')}">Date</td>
+                      <td th:text="${#temporals.format(transaction.timestamp, 'dd/MM/yyyy HH:mm')}">Tanggal</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
               <a th:href="@{/admin/transactions}" class="btn btn-primary w-100">
-                📊 View All Transactions
+                Lihat Semua Transaksi
               </a>
             </div>
           </div>
@@ -104,30 +104,30 @@
       <!-- Quick Actions -->
       <div class="card">
         <div class="card-header">
-          ⚡ Quick Actions
+          Tindakan Cepat
         </div>
         <div class="card-body">
           <div class="grid-actions">
             <a th:href="@{/admin/products}" class="btn btn-success">
-              ➕ Add New Product
+              Tambah Produk Baru
             </a>
             <a th:href="@{/admin/reports}" class="btn btn-warning">
-              📈 View Reports
+              Lihat Laporan
             </a>
             <a th:href="@{/admin/users}" class="btn btn-secondary">
-              👥 Manage Users
+              Kelola Pengguna
             </a>
             <a th:href="@{/admin/transactions}" class="btn btn-info">
-              📊 View Transactions
+              Lihat Transaksi
             </a>
             <form th:action="@{/admin/save}" method="post">
               <button type="submit" class="btn btn-primary">
-                💾 Save Data
+                Simpan Data
               </button>
             </form>
             <form th:action="@{/logout}" method="post">
               <button type="submit" class="btn btn-danger">
-                🚪 Logout
+                Keluar
               </button>
             </form>
           </div>
