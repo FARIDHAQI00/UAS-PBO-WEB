@@ -83,4 +83,22 @@ public class TransactionService {
     public int getTotalRevenue() {
         return repo.readAll().stream().mapToInt(Transaction::getTotal).sum();
     }
+
+    public int getTotalOrders() {
+        return repo.readAll().size();
+    }
+
+    public double getAverageOrder() {
+        var transactions = repo.readAll();
+        if (transactions.isEmpty()) return 0;
+        return transactions.stream().mapToInt(Transaction::getTotal).average().orElse(0);
+    }
+
+    public int getHighestOrder() {
+        var transactions = repo.readAll();
+        return transactions.stream()
+                .mapToInt(Transaction::getTotal)
+                .max()
+                .orElse(0);
+    }
 }

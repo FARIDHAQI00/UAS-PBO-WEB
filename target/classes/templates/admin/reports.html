@@ -26,11 +26,11 @@
 
           <div class="stats-grid">
             <div class="stat-card">
-              <div class="stat-number">0</div>
+              <div class="stat-number" th:text="${totalOrders}">0</div>
               <div class="stat-label">Total Pesanan</div>
             </div>
             <div class="stat-card">
-              <div class="stat-number">0</div>
+              <div class="stat-number" th:text="${#numbers.formatDecimal(averageOrder, 0, 'COMMA', 2, 'POINT')}">0</div>
               <div class="stat-label">Rerata Pesanan</div>
             </div>
             <!-- <div class="stat-card">
@@ -42,7 +42,7 @@
               <div class="stat-label">Pelanggan Aktif</div>
             </div> -->
             <div class="stat-card">
-              <div class="stat-number">0</div>
+              <div class="stat-number" th:text="${highestOrder}">0</div>
               <div class="stat-label">Pesanan Tertinggi</div>
             </div>
           </div>

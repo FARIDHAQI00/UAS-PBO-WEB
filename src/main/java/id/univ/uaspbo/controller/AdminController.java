@@ -101,8 +101,14 @@ public class AdminController {
     public String reports(HttpSession s, Model m) {
         if (!isAdmin(s)) return "redirect:/login";
         int totalRevenue = transactionService.getTotalRevenue();
+        int totalOrders = transactionService.getTotalOrders();
+        double averageOrder = transactionService.getAverageOrder();
+        int highestOrder = transactionService.getHighestOrder();
+
         m.addAttribute("totalRevenue", totalRevenue);
-        // In the earlier version, transactions attribute was not set to avoid errors
+        m.addAttribute("totalOrders", totalOrders);
+        m.addAttribute("averageOrder", averageOrder);
+        m.addAttribute("highestOrder", highestOrder);
         return "admin/reports";
     }
 
