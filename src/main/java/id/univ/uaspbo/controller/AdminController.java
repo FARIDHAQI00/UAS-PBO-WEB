@@ -9,9 +9,12 @@ import org.springframework.web.bind.annotation.*;
 import jakarta.servlet.http.HttpSession;
 
 /**
- * Controller class handling admin operations including product management,
- * transaction viewing, user management, and reports.
- * All methods require admin authentication.
+ * Kelas controller yang mengelola semua operasi terkait admin,
+ * seperti manajemen produk, transaksi, pengguna, dan laporan.
+ * Semua method di kelas ini memerlukan autentikasi sebagai admin
+ * untuk dapat mengaksesnya. Kelas ini berfungsi sebagai penghubung
+ * antara view (template) dan service yang bertugas memproses data
+ * bisnis yang terkait dengan bagian admin dari aplikasi.
  */
 @Controller
 @RequestMapping("/admin")
@@ -46,11 +49,13 @@ public class AdminController {
     }
 
     /**
-     * Displays the admin dashboard with overview of products, transactions, and users.
+     * Menampilkan halaman dashboard admin yang berisi ringkasan
+     * data produk, transaksi, dan pengguna.
+     * Jika pengguna bukan admin, akan diarahkan ke halaman login.
      *
-     * @param s HTTP session
-     * @param m Model for view attributes
-     * @return Admin dashboard view or redirect to login if not admin
+     * @param s HTTP session untuk verifikasi peran admin
+     * @param m Model untuk menyimpan data yang akan ditampilkan di view
+     * @return nama view halaman dashboard admin atau redirect ke login
      */
     @GetMapping
     public String dashboard(HttpSession s, Model m) {
@@ -62,11 +67,12 @@ public class AdminController {
     }
 
     /**
-     * Displays the product management page.
+     * Menampilkan halaman manajemen produk yang berisi daftar produk.
+     * Hanya dapat diakses oleh admin.
      *
-     * @param s HTTP session
-     * @param m Model for view attributes
-     * @return Products view or redirect to login if not admin
+     * @param s HTTP session untuk verifikasi admin
+     * @param m Model untuk menyimpan atribut data produk
+     * @return nama view halaman produk atau redirect ke login
      */
     @GetMapping("/products")
     public String products(HttpSession s, Model m) {
@@ -76,11 +82,13 @@ public class AdminController {
     }
 
     /**
-     * Displays the users page.
+     * Menampilkan halaman manajemen pengguna yang meliputi daftar pengguna
+     * dan riwayat transaksi mereka.
+     * Hanya dapat diakses oleh admin.
      *
-     * @param s HTTP session
-     * @param m Model for view attributes
-     * @return Users view or redirect to login if not admin
+     * @param s HTTP session untuk verifikasi admin
+     * @param m Model untuk menyimpan atribut data pengguna dan transaksi
+     * @return nama view halaman pengguna atau redirect ke login
      */
     @GetMapping("/users")
     public String users(HttpSession s, Model m) {
@@ -91,11 +99,14 @@ public class AdminController {
     }
 
     /**
-     * Displays the reports page.
+     * Menampilkan halaman laporan yang berisi ringkasan
+     * statistik transaksi seperti total pendapatan, jumlah pesanan,
+     * rata-rata nilai pesanan, dan nilai pesanan tertinggi.
+     * Hanya dapat diakses oleh admin.
      *
-     * @param s HTTP session
-     * @param m Model for view attributes
-     * @return Reports view or redirect to login if not admin
+     * @param s HTTP session untuk verifikasi admin
+     * @param m Model untuk menyimpan data laporan yang akan ditampilkan
+     * @return nama view halaman laporan atau redirect ke login
      */
     @GetMapping("/reports")
     public String reports(HttpSession s, Model m) {
@@ -113,11 +124,12 @@ public class AdminController {
     }
 
     /**
-     * Displays the transactions page.
+     * Menampilkan halaman daftar transaksi.
+     * Hanya dapat diakses oleh admin yang sudah login.
      *
-     * @param s HTTP session
-     * @param m Model for view attributes
-     * @return Transactions view or redirect to login if not admin
+     * @param s HTTP session untuk verifikasi admin
+     * @param m Model untuk menyimpan daftar transaksi yang akan ditampilkan
+     * @return nama view halaman transaksi atau redirect ke login
      */
     @GetMapping("/transactions")
     public String transactions(HttpSession s, Model m) {
@@ -127,13 +139,14 @@ public class AdminController {
     }
 
     /**
-     * Adds a new user.
+     * Menambahkan pengguna baru ke sistem berdasarkan data dari form.
+     * Hanya admin yang dapat melakukan aksi ini.
      *
-     * @param s HTTP session
-     * @param email User email
-     * @param password User password
-     * @param role User role
-     * @return Redirect to users page or login if not admin
+     * @param s HTTP session untuk verifikasi peran admin
+     * @param email alamat email pengguna yang akan ditambahkan
+     * @param password password pengguna baru
+     * @param role peran pengguna baru (contoh: ADMIN, USER)
+     * @return redirect ke halaman manajemen pengguna atau ke login jika bukan admin
      */
     @PostMapping("/users/add")
     public String addUser(HttpSession s, @RequestParam String email, @RequestParam String password, @RequestParam String role) {
@@ -147,12 +160,13 @@ public class AdminController {
     }
 
     /**
-     * Updates a user's role.
+     * Memperbarui peran (role) pengguna berdasarkan email pengguna yang sudah ada.
+     * Hanya admin yang dapat mengakses fungsi ini.
      *
-     * @param s HTTP session
-     * @param email User email
-     * @param role New role
-     * @return Redirect to users page or login if not admin
+     * @param s HTTP session untuk verifikasi peran admin
+     * @param email alamat email pengguna yang rolenya ingin diubah
+     * @param role peran baru yang akan diberikan (HARUS dalam huruf kapital)
+     * @return redirect ke halaman manajemen pengguna atau ke login jika bukan admin
      */
     @PostMapping("/users/update-role")
     public String updateUserRole(HttpSession s, @RequestParam String email, @RequestParam String role) {
@@ -166,11 +180,12 @@ public class AdminController {
     }
 
     /**
-     * Deletes a user.
+     * Menghapus pengguna dari sistem berdasarkan emailnya.
+     * Hanya admin yang dapat melakukan penghapusan ini.
      *
-     * @param s HTTP session
-     * @param email User email to delete
-     * @return Redirect to users page or login if not admin
+     * @param s HTTP session untuk verifikasi admin
+     * @param email alamat email pengguna yang akan dihapus
+     * @return redirect ke halaman manajemen pengguna atau ke login
      */
     @PostMapping("/users/delete")
     public String deleteUser(HttpSession s, @RequestParam String email) {
@@ -194,13 +209,14 @@ public class AdminController {
     }
     
     /**
-     * Menangani penambahan produk baru dari form.
+     * Menangani penambahan produk baru dari form input admin.
+     * Hanya admin yang dapat menambahkan produk baru.
      *
-     * @param s HTTP session
-     * @param name Nama produk
-     * @param price Harga produk
-     * @param stock Jumlah stok produk
-     * @return Redirect ke halaman produk atau login jika bukan admin
+     * @param s HTTP session untuk verifikasi admin
+     * @param name nama produk baru yang akan ditambahkan
+     * @param price harga produk (integer)
+     * @param stock jumlah stok produk yang tersedia
+     * @return redirect ke halaman daftar produk atau ke login jika bukan admin
      */
     @PostMapping("/products/add")
     public String addProduct(HttpSession s,
@@ -217,14 +233,15 @@ public class AdminController {
     }
 
     /**
-     * Menangani pembaruan produk dari form.
+     * Menangani pembaruan data produk yang sudah ada berdasarkan form input.
+     * Hanya admin yang boleh melakukan pembaruan data produk.
      *
-     * @param s HTTP session
-     * @param id ID produk yang diupdate
-     * @param name Nama produk
-     * @param price Harga produk
-     * @param stock Jumlah stok produk
-     * @return Redirect ke halaman produk atau login jika bukan admin
+     * @param s HTTP session untuk verifikasi admin
+     * @param id ID produk yang akan diperbarui
+     * @param name nama produk yang diperbarui
+     * @param price harga produk yang diperbarui
+     * @param stock stok produk yang diperbarui
+     * @return redirect ke halaman daftar produk atau ke login jika bukan admin
      */
     @PostMapping("/products/update")
     public String updateProduct(HttpSession s,
@@ -244,11 +261,12 @@ public class AdminController {
     }
 
     /**
-     * Menangani penghapusan produk dari form.
+     * Menangani penghapusan produk berdasarkan ID produk.
+     * Hanya admin yang dapat melakukan penghapusan produk.
      *
-     * @param s HTTP session
+     * @param s HTTP session untuk verifikasi admin
      * @param id ID produk yang akan dihapus
-     * @return Redirect ke halaman produk atau login jika bukan admin
+     * @return redirect ke halaman daftar produk atau ke login jika bukan admin
      */
     @PostMapping("/products/delete")
     public String deleteProduct(HttpSession s,
