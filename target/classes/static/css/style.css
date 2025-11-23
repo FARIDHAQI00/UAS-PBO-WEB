@@ -1,4 +1,19 @@
-/* Modern Food Ordering System Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--gradient-dark);
+  background-attachment: fixed;
+  min-height: 100vh;
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
 :root {
   --primary-color: #8b5cf6;
   --secondary-color: #3b82f6;
@@ -38,31 +53,32 @@ body {
   overflow-x: hidden;
 }
 
-/* Enhanced Navigation */
+
 .navbar {
   background: var(--glass-bg);
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--glass-border);
+  border-bottom: 1px solid var(--glass-border); 
   padding: 1rem 0;
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow); 
   transition: var(--transition);
 }
 
 .navbar:hover {
-  background: rgba(15, 15, 35, 0.98);
+  background: rgba(15, 15, 35, 0.98); 
 }
 
 .navbar .container {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 0 auto; 
   padding: 0 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 
 .navbar-brand {
   font-size: 1.5rem;
@@ -79,8 +95,9 @@ body {
 }
 
 .navbar-brand:hover {
-  transform: scale(1.05);
+  transform: scale(1.05); 
 }
+
 
 .navbar-brand::before {
   content: "🍽️";
@@ -88,11 +105,13 @@ body {
   animation: bounce 2s infinite;
 }
 
+
 @keyframes bounce {
   0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
   40% { transform: translateY(-5px); }
   60% { transform: translateY(-3px); }
 }
+
 
 .navbar-nav {
   display: flex;
@@ -100,6 +119,8 @@ body {
   gap: 1rem;
   align-items: center;
 }
+
+
 
 .nav-link {
   color: var(--text-primary);
@@ -112,10 +133,12 @@ body {
   overflow: hidden;
 }
 
+
 .nav-link:hover {
   color: white;
   transform: translateY(-2px);
 }
+
 
 .nav-link.btn-danger {
   background: var(--danger-color);
@@ -125,20 +148,21 @@ body {
   box-shadow: 0 4px 15px rgba(255, 56, 56, 0.3);
 }
 
+
 .nav-link.btn-danger:hover {
   background: #e03131;
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(255, 56, 56, 0.4);
 }
 
-/* Enhanced Main Container */
+
 .container {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 0 auto; 
   padding: 2rem;
 }
 
-/* Enhanced Cards */
+
 .card {
   background: var(--glass-bg);
   backdrop-filter: blur(20px);
@@ -149,6 +173,7 @@ body {
   transition: var(--transition);
   position: relative;
 }
+
 
 .card::before {
   content: '';
@@ -166,10 +191,12 @@ body {
   opacity: 1;
 }
 
+
 .card:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
 }
+
 
 .card-header {
   background: var(--gradient-primary);
@@ -197,7 +224,7 @@ body {
   padding: 2rem;
 }
 
-/* Enhanced Buttons */
+
 .btn {
   display: inline-flex;
   align-items: center;

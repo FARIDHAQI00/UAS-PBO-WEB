@@ -145,7 +145,7 @@ public class Transaction extends Entity {
          */
         public void setQty(int qty) { this.qty = qty; }
 
-        /**
+        /* *
          * Mengambil harga satuan produk.
          */
         public int getPrice() { return price; }

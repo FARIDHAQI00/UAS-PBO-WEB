@@ -3,44 +3,58 @@ package id.univ.uaspbo.service;
 import java.util.List;
 
 /**
- * Interface defining basic CRUD operations for entities.
- * @param <T> The entity type
+ * Interface yang mendefinisikan kontrak operasi dasar CRUD (Create, Read, Update, Delete) 
+ * untuk pengelolaan berbagai entitas dalam aplikasi.
+ * Interface ini menjadi dasar bagi semua service yang mengimplementasikan 
+ * operasi pengelolaan data untuk tipe entitas tertentu.
+ * 
+ * Setiap kelas yang mengimplementasikan interface ini wajib menyediakan 
+ * implementasi metode CRUD untuk tipe entitas yang ditentukan.
+ *
+ * Konsep OOP yang digunakan:
+ * - Abstraksi: Mendefinisikan kontrak method CRUD yang harus diimplementasikan oleh kelas yang mengimplementasikan interface ini.
  */
 public interface CrudService<T> {
     /**
-     * Get all entities.
-     * @return List of all entities
+     * Mendapatkan semua entitas.
+     *
+     * @return Daftar semua entitas yang tersedia.
      */
     List<T> getAll();
 
     /**
-     * Find entity by ID.
-     * @param id The entity ID
-     * @return The entity if found, null otherwise
+     * Mencari entitas berdasarkan ID.
+     *
+     * @param id ID entitas yang dicari.
+     * @return Entitas yang ditemukan, atau null jika tidak ada.
      */
     T findById(String id);
 
     /**
-     * Add a new entity.
-     * @param entity The entity to add
+     * Menambahkan entitas baru.
+     *
+     * @param entity Entitas yang akan ditambahkan.
      */
     void add(T entity);
 
     /**
-     * Update an existing entity.
-     * @param entity The entity to update
+     * Memperbarui entitas yang sudah ada.
+     *
+     * @param entity Entitas yang akan diperbarui.
      */
     void update(T entity);
 
     /**
-     * Delete entity by ID.
-     * @param id The entity ID to delete
+     * Menghapus entitas berdasarkan ID.
+     *
+     * @param id ID entitas yang akan dihapus.
      */
     void delete(String id);
 
     /**
-     * Save all entities (for persistence).
-     * @param entities List of entities to save
+     * Menyimpan semua entitas untuk penyimpanan permanen.
+     *
+     * @param entities Daftar entitas yang akan disimpan.
      */
     void saveAll(List<T> entities);
 }

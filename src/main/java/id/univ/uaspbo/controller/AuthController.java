@@ -12,8 +12,11 @@ import jakarta.servlet.http.HttpSession;
 /**
  * Kelas controller yang mengelola operasi autentikasi pengguna,
  * termasuk proses login, logout, dan registrasi.
- * Kelas ini juga mengatur sesi pengguna dan pengalihan ke halaman
- * yang sesuai berdasarkan peranan pengguna (ADMIN atau USER).
+ * Kelas ini mengatur sesi pengguna dan mengalihkan pengguna ke halaman
+ * yang sesuai berdasarkan peran mereka (ADMIN atau USER).
+ *
+ * Konsep OOP yang digunakan:
+ * - Enkapsulasi: privatisasi UserService dan pengaksesan melalui konstruktor.
  */
 @Controller
 public class AuthController {
@@ -39,9 +42,9 @@ public class AuthController {
     /**
      * Memproses permintaan login dari pengguna.
      * Melakukan autentikasi berdasarkan email dan password.
-     * Jika gagal, menampilkan kembali halaman login dengan pesan error.
+     * Jika gagal, menampilkan halaman login dengan pesan error.
      * Jika berhasil, menyimpan data pengguna di sesi dan mengalihkan
-     * ke dashboard yang sesuai berdasarkan peran pengguna.
+     * ke dashboard sesuai dengan peran pengguna.
      *
      * @param email email pengguna yang mencoba login
      * @param password password pengguna
@@ -74,9 +77,9 @@ public class AuthController {
     }
 
     /**
-     * Displays the registration page.
+     * Menampilkan halaman registrasi pengguna baru.
      *
-     * @return The registration view name
+     * @return nama view halaman registrasi
      */
     @GetMapping("/register")
     public String registerPage() {
@@ -85,15 +88,15 @@ public class AuthController {
 
     /**
      * Memproses pendaftaran pengguna baru.
-     * Melakukan validasi kecocokan password dan konfirmasi.
-     * Jika valid, mencoba mendaftarkan pengguna melalui UserService.
-     * Menampilkan pesan sukses atau error sesuai hasil pendaftaran.
+     * Melakukan validasi kecocokan password dan konfirmasi password.
+     * Jika valid, mendaftarkan pengguna melalui UserService.
+     * Menampilkan pesan sukses atau error sesuai hasil proses pendaftaran.
      *
      * @param email email pengguna baru yang akan didaftarkan
      * @param password password pengguna baru
      * @param confirmPassword konfirmasi password yang harus sama dengan password
      * @param m Model untuk menampilkan pesan sukses atau error pada view
-     * @return redirect ke halaman login jika berhasil, atau kembali ke register jika gagal
+     * @return redirect ke halaman login jika berhasil, atau kembali ke halaman registrasi jika gagal
      */
     @PostMapping("/register")
     public String doRegister(@RequestParam String email, @RequestParam String password,

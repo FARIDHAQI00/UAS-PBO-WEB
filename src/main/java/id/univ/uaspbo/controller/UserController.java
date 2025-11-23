@@ -120,6 +120,7 @@ public class UserController {
         return "redirect:/user/history";
     }
 
+
     /**
      * Menampilkan riwayat transaksi dari pengguna saat ini.
      * Jika sesi tidak valid, diarahkan ke halaman login.
@@ -127,7 +128,8 @@ public class UserController {
      * @param s HTTP session untuk verifikasi pengguna
      * @param m Model untuk menyimpan data transaksi pengguna
      * @return nama view halaman riwayat transaksi atau redirect ke login
-     */
+    **/
+    
     @GetMapping("/history")
     public String history(HttpSession s, Model m) {
         var u = (User) s.getAttribute("user");
@@ -135,4 +137,4 @@ public class UserController {
         m.addAttribute("transactions", transactionService.getByUserId(u.getId()));
         return "user/history";
     }
-}
+ }

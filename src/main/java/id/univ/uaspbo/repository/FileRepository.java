@@ -9,21 +9,24 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Generic repository class for handling JSON file-based data persistence.
- * Provides basic read and write operations for entities stored in JSON files.
+ * Kelas repository generik yang menangani penyimpanan data berbasis file JSON.
+ * Menyediakan operasi dasar untuk membaca dan menyimpan entitas yang disimpan dalam file JSON.
  *
- * @param <T> The type of entity to be stored/retrieved
+ * @param <T> Tipe entitas yang akan disimpan atau diambil dari file
+ *
+ * Konsep OOP yang digunakan:
+ * - Generik (Generic): Menggunakan tipe parameter agar bisa digunakan untuk berbagai jenis entitas.
  */
 public class FileRepository<T> {
-    private final File file;
-    private final Class<T[]> type;
-    private final ObjectMapper mapper = new ObjectMapper();
+    private final File file;  // File penyimpanan data JSON
+    private final Class<T[]> type;  // Kelas array tipe entitas untuk deserialisasi JSON
+    private final ObjectMapper mapper = new ObjectMapper();  // Mapper JSON dari Jackson
 
     /**
-     * Constructor for FileRepository.
+     * Konstruktor untuk FileRepository.
      *
-     * @param path The file path for data storage
-     * @param type The array class type for JSON deserialization
+     * @param path Path file tempat penyimpanan data
+     * @param type Tipe kelas array untuk deserialisasi JSON
      */
     public FileRepository(String path, Class<T[]> type) {
         this.file = new File(path);
@@ -33,9 +36,10 @@ public class FileRepository<T> {
     }
 
     /**
-     * Reads all entities from the JSON file.
+     * Membaca semua entitas dari file JSON.
      *
-     * @return List of all entities, empty list if file doesn't exist or error occurs
+     * @return Daftar entitas yang ada dalam file,
+     *         atau daftar kosong jika file tidak ada atau terjadi kesalahan
      */
     public List<T> readAll() {
         try {
@@ -49,13 +53,13 @@ public class FileRepository<T> {
     }
 
     /**
-     * Saves all entities to the JSON file.
+     * Menyimpan semua entitas ke dalam file JSON.
      *
-     * @param list The list of entities to save
+     * @param list Daftar entitas yang akan disimpan
      */
     public void saveAll(List<T> list) {
         try {
-            // ensure parent exists
+            // memastikan direktori induk file tersedia
             File p = file.getAbsoluteFile().getParentFile();
             if (p != null && !p.exists()) p.mkdirs();
             mapper.writeValue(file, list.toArray((T[]) java.lang.reflect.Array.newInstance(type.getComponentType(), list.size())));
