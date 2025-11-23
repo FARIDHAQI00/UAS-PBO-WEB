@@ -13,9 +13,4 @@
   "name" : "Es Teh",
   "price" : 5000,
   "stock" : 30
-}, {
-  "id" : "db40a9d6-0a59-4ef2-b49d-556150481e75",
-  "name" : "tes aja",
-  "price" : 22,
-  "stock" : 222
 } ]
