@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * Kelas utama untuk aplikasi web UAS PBO ini.
  * Kelas ini menggunakan anotasi @SpringBootApplication yang menandakan kelas
- * ini sebagai titik awal aplikasi Spring Boot berjalan.
+ * inp0-i sebagai titik awal aplikasi Spring Boot berjalan.
  * 
  * Fungsi utama kelas ini adalah menjalankan aplikasi dengan memicu metode main,
  * yang memulai konteks Spring dan melakukan konfigurasi otomatis.
