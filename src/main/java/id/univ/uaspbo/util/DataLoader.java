@@ -34,9 +34,6 @@ public class DataLoader implements CommandLineRunner {
     /**
      * Metode yang dijalankan pada saat aplikasi mulai berjalan,
      * bertugas untuk mengecek dan memuat data default jika belum tersedia.
-     *
-     * @param args Argumen baris perintah (tidak dipakai)
-     * @throws Exception Melempar pengecualian jika terjadi kesalahan saat inisialisasi data
      */
     @Override
     public void run(String... args) throws Exception {

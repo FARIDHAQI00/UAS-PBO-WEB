@@ -1,3 +1,29 @@
+<!--
+  File ini adalah template dashboard admin pada aplikasi UAS PBO.
+  Fungsi utamanya adalah menampilkan ringkasan informasi penting terkait
+  sistem pemesanan makanan, seperti total produk, total transaksi,
+  total pengguna, dan total pendapatan yang berhasil diperoleh.
+
+  Template ini menggunakan Thymeleaf sebagai template engine dengan layout fragment header.
+
+  Data yang ditampilkan berasal dari backend, tepatnya disediakan oleh AdminController pada endpoint /admin.
+  Data tersebut meliputi:
+  - products: Daftar produk yang ada di sistem
+  - transactions: Daftar transaksi yang terjadi
+  - users: Daftar pengguna yang terdaftar di sistem
+  
+  Tampilan dashboard terdiri dari:
+  - Statistik utama dalam bentuk kartu untuk total produk, transaksi, pengguna, dan pendapatan
+  - Daftar produk terbaru (maksimal 5) beserta harga dan status stoknya
+  - Daftar transaksi terbaru (maksimal 5) dengan detail ID, pengguna, total biaya, dan waktu transaksi
+  - Tautan navigasi untuk mengelola produk, melihat laporan, mengelola pengguna, dan melihat transaksi detail
+  - Form untuk tindakan cepat seperti menyimpan data manual dan logout
+  
+  Halaman ini hanya bisa diakses oleh admin yang sudah login,
+  dan menjadi halaman utama bagi admin untuk memantau dan mengelola sistem pemesanan makanan.
+
+  File ini terhubung langsung dengan AdminController.java pada backend yang mengelola logika dan penyediaan data untuk ditampilkan.
+-->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/header}">
