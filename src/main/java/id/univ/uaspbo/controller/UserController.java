@@ -13,9 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Controller class handling user operations including product browsing,
- * checkout, and transaction history viewing.
- * All methods require user authentication.
+ * Kelas controller yang mengelola operasi pengguna,
+ * termasuk penjelajahan produk, pemrosesan checkout,
+ * dan peninjauan riwayat transaksi.
+ * Semua method dalam kelas ini memerlukan autentikasi pengguna.
  */
 @Controller
 @RequestMapping("/user")
@@ -25,10 +26,11 @@ public class UserController {
     private final TransactionService transactionService;
 
     /**
-     * Constructor for UserController.
+     * Konstruktor utama UserController yang menerima service produk
+     * dan transaksi untuk melayani permintaan pengguna.
      *
-     * @param productService Service for product operations
-     * @param transactionService Service for transaction operations
+     * @param productService Service yang menangani operasi produk
+     * @param transactionService Service yang menangani operasi transaksi
      */
     public UserController(ProductService productService, TransactionService transactionService) {
         this.productService = productService;
@@ -36,10 +38,10 @@ public class UserController {
     }
 
     /**
-     * Checks if the current session user has user role.
+     * Memeriksa apakah pengguna pada sesi saat ini memiliki peran USER.
      *
-     * @param s HTTP session
-     * @return true if user has USER role, false otherwise
+     * @param s HTTP session yang menyimpan data pengguna aktif
+     * @return true jika pengguna memiliki role USER, false jika tidak atau tidak login
      */
     private boolean isUser(HttpSession s) {
         var u = s.getAttribute("user");
@@ -47,13 +49,15 @@ public class UserController {
     }
 
     /**
-     * Displays the user dashboard with searchable and sortable product list.
+     * Menampilkan halaman dashboard pengguna dengan daftar produk
+     * yang dapat dicari dan diurutkan sesuai kriteria.
+     * Jika pengguna belum login, diarahkan ke halaman login.
      *
-     * @param s HTTP session
-     * @param m Model for view attributes
-     * @param search Optional search query for filtering products
-     * @param sort Optional sort criteria for products
-     * @return User dashboard view or redirect to login if not authenticated
+     * @param s HTTP session untuk validasi sesi pengguna
+     * @param m Model untuk menyimpan atribut data produk dan filter
+     * @param search parameter opsional untuk pencarian nama produk
+     * @param sort parameter opsional untuk pengurutan produk
+     * @return nama view halaman dashboard pengguna atau redirect ke login
      */
     @GetMapping
     public String dashboard(HttpSession s, Model m,
@@ -69,13 +73,17 @@ public class UserController {
     }
 
     /**
-     * Processes checkout for selected products.
+     * Memproses checkout produk yang dipilih oleh pengguna.
+     * Membuat daftar item transaksi berdasarkan produk dan jumlah yang dipilih,
+     * menghitung total pembayaran, dan mencatat transaksi.
+     * Jika tidak ada item yang dipilih, menampilkan pesan error pada dashboard.
+     * Jika sesi pengguna tidak valid, diarahkan ke login.
      *
-     * @param s HTTP session
-     * @param productIds Array of product IDs to purchase
-     * @param qtys Array of quantities corresponding to product IDs
-     * @param m Model for view attributes
-     * @return Redirect to history page on success or dashboard with error
+     * @param s HTTP session untuk verifikasi pengguna
+     * @param productIds array ID produk yang dipilih
+     * @param qtys array jumlah masing-masing produk yang dipilih
+     * @param m Model untuk menampilkan pesan error jika ada
+     * @return redirect ke halaman riwayat transaksi jika sukses, atau kembali ke dashboard jika gagal
      */
     @PostMapping("/checkout")
     public String checkout(HttpSession s,
@@ -113,11 +121,12 @@ public class UserController {
     }
 
     /**
-     * Displays the transaction history for the current user.
+     * Menampilkan riwayat transaksi dari pengguna saat ini.
+     * Jika sesi tidak valid, diarahkan ke halaman login.
      *
-     * @param s HTTP session
-     * @param m Model for view attributes
-     * @return User history view or redirect to login if not authenticated
+     * @param s HTTP session untuk verifikasi pengguna
+     * @param m Model untuk menyimpan data transaksi pengguna
+     * @return nama view halaman riwayat transaksi atau redirect ke login
      */
     @GetMapping("/history")
     public String history(HttpSession s, Model m) {

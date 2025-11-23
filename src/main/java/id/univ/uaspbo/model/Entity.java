@@ -1,18 +1,47 @@
 package id.univ.uaspbo.model;
 
 /**
- * Base class for all entities in the system.
- * Provides common id field and methods.
+ * Kelas dasar abstrak untuk semua entitas dalam sistem.
+ * Berfungsi sebagai superclass yang menyediakan atribut dan metode
+ * umum seperti identifier unik (id) yang digunakan oleh semua entitas.
+ * 
+ * Menggunakan konsep Object Oriented Programming (OOP):
+ * - Abstraksi: Kelas ini abstrak yang berarti tidak dapat diinstansiasi langsung,
+ *   tetapi diwariskan oleh kelas lain yang spesifik.
+ * - Enkapsulasi: Atribut id bersifat protected dan diakses melalui getter dan setter.
+ * 
+ * Kelas ini menyederhanakan pengelolaan identifier unik pada semua entitas di sistem,
+ * sehingga kelas-kelas turunan dapat fokus pada atribut dan perilaku khusus mereka saja.
  */
-public abstract class Entity {
-    protected String id;
 
+public abstract class Entity {
+    /**
+     * Identifier unik yang membedakan setiap entitas.
+     * Biasanya digunakan sebagai primary key pada database.
+     */
+    protected String id;           
+    
+    /**
+     * Konstruktor default tanpa parameter.
+     * Membuat objek entitas dengan id belum diatur.
+     */
     public Entity() {}
 
+    /**
+     * Konstruktor dengan parameter id.
+     * Menginisialisasi entitas dengan identifier unik yang diberikan.
+     */
     public Entity(String id) {
         this.id = id;
     }
 
+    /**
+     * Mengambil nilai identifier entitas.
+     */
     public String getId() { return id; }
+
+    /**
+     * Mengatur nilai identifier entitas.
+     */
     public void setId(String id) { this.id = id; }
 }

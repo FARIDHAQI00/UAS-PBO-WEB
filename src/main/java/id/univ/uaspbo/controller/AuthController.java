@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import jakarta.servlet.http.HttpSession;
 
 /**
- * Controller class handling authentication operations including login and logout.
- * Manages user sessions and redirects based on user roles.
+ * Kelas controller yang mengelola operasi autentikasi pengguna,
+ * termasuk proses login, logout, dan registrasi.
+ * Kelas ini juga mengatur sesi pengguna dan pengalihan ke halaman
+ * yang sesuai berdasarkan peranan pengguna (ADMIN atau USER).
  */
 @Controller
 public class AuthController {
@@ -19,28 +21,33 @@ public class AuthController {
     private final UserService userService;
 
     /**
-     * Constructor for AuthController.
+     * Konstruktor utama AuthController yang menerima service pengguna
+     * untuk melakukan autentikasi dan registrasi.
      *
-     * @param userService The user service for authentication
+     * @param userService Service yang menangani operasi pengguna
      */
     public AuthController(UserService userService) { this.userService = userService; }
 
     /**
-     * Displays the login page.
+     * Menampilkan halaman login kepada pengguna.
      *
-     * @return The login view name
+     * @return nama view halaman login
      */
     @GetMapping({"/", "/login"})
     public String loginPage() { return "login"; }
 
     /**
-     * Processes user login attempt.
+     * Memproses permintaan login dari pengguna.
+     * Melakukan autentikasi berdasarkan email dan password.
+     * Jika gagal, menampilkan kembali halaman login dengan pesan error.
+     * Jika berhasil, menyimpan data pengguna di sesi dan mengalihkan
+     * ke dashboard yang sesuai berdasarkan peran pengguna.
      *
-     * @param email User email
-     * @param password User password
-     * @param session HTTP session
-     * @param m Model for view attributes
-     * @return Redirect to appropriate dashboard or back to login on failure
+     * @param email email pengguna yang mencoba login
+     * @param password password pengguna
+     * @param session sesi HTTP untuk menyimpan data pengguna saat login berhasil
+     * @param m Model untuk menambahkan atribut ke halaman view
+     * @return redirect ke halaman admin atau user, atau kembali ke login jika gagal
      */
     @PostMapping("/login")
     public String doLogin(@RequestParam String email, @RequestParam String password, HttpSession session, Model m) {
@@ -55,10 +62,10 @@ public class AuthController {
     }
 
     /**
-     * Logs out the current user by invalidating the session.
+     * Melakukan logout pengguna dengan menghapus sesi yang aktif.
      *
-     * @param s HTTP session to invalidate
-     * @return Redirect to login page
+     * @param s sesi HTTP yang akan dihapus
+     * @return redirect ke halaman login setelah logout
      */
     @PostMapping("/logout")
     public String logout(HttpSession s) {
@@ -77,13 +84,16 @@ public class AuthController {
     }
 
     /**
-     * Processes user registration attempt.
+     * Memproses pendaftaran pengguna baru.
+     * Melakukan validasi kecocokan password dan konfirmasi.
+     * Jika valid, mencoba mendaftarkan pengguna melalui UserService.
+     * Menampilkan pesan sukses atau error sesuai hasil pendaftaran.
      *
-     * @param email User email
-     * @param password User password
-     * @param confirmPassword Confirmation password
-     * @param m Model for view attributes
-     * @return Redirect to login page on success or back to register on failure
+     * @param email email pengguna baru yang akan didaftarkan
+     * @param password password pengguna baru
+     * @param confirmPassword konfirmasi password yang harus sama dengan password
+     * @param m Model untuk menampilkan pesan sukses atau error pada view
+     * @return redirect ke halaman login jika berhasil, atau kembali ke register jika gagal
      */
     @PostMapping("/register")
     public String doRegister(@RequestParam String email, @RequestParam String password,
