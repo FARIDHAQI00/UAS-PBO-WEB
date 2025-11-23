@@ -17,9 +17,10 @@ import java.util.UUID;
  *
  * @param <T> Tipe entitas yang dikelola oleh service ini.
  *
- * Konsep OOP yang digunakan:
- * - Abstraksi: Mendefinisikan perilaku CRUD dasar secara umum sebagai kontrak yang wajib diimplementasikan oleh kelas turunan.
- * - Pewarisan (Inheritance): Memungkinkan kelas turunan mewarisi implementasi dasar CRUD sehingga cukup fokus pada logika khusus.
+ * Konsep Object Oriented Programming (OOP) yang dipakai:
+ * - Abstraksi: Mendefinisikan method abstrak untuk operasi CRUD yang harus diimplementasikan oleh subclass.
+ * - Inheritance (Pewarisan): Memungkinkan subclass mewarisi implementasi dasar CRUD.
+ * - Polymorphism (Polimorfisme): Mendukung method overriding oleh subclass untuk implementasi spesifik.
  */
 public abstract class AbstractService<T> implements CrudService<T> {
     protected FileRepository<T> repo;  // Repository penyimpanan data berbasis file

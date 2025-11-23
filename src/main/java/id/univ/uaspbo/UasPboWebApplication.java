@@ -10,10 +10,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * 
  * Fungsi utama kelas ini adalah menjalankan aplikasi dengan memicu metode main,
  * yang memulai konteks Spring dan melakukan konfigurasi otomatis.
- *
- * Konsep OOP yang digunakan:
- * - Static Method: Metode main didefinisikan statis agar dapat dijalankan tanpa membuat instance kelas.
- * - Anotasi (@SpringBootApplication): Menginstruksikan Spring untuk mengatur konfigurasi aplikasi secara otomatis.
  */
 @SpringBootApplication
 public class UasPboWebApplication {

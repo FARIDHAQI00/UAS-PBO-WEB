@@ -6,10 +6,9 @@ package id.univ.uaspbo.model;
  * sehingga memiliki atribut id unik. Model ini menyimpan informasi email,
  * password, dan role pengguna.
  *
- * Konsep Object Oriented Programming (OOP) yang digunakan:
- * - Inheritance (Pewarisan): Menggunakan pewarisan dari kelas Entity untuk atribut id.
- * - Enkapsulasi: Atribut email, password, dan role disembunyikan dengan akses private
- *   dan diakses melalui getter dan setter.
+ * Konsep Object Oriented Programming (OOP) yang dipakai:
+ * - Inheritance (Pewarisan): Menggunakan pewarisan dari kelas abstrak Entity untuk atribut id.
+ * - Enkapsulasi: Atribut email, password, dan role bersifat private dan diakses lewat getter dan setter.
  */
 
 public class User extends Entity {

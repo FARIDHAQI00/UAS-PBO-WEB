@@ -5,10 +5,10 @@ package id.univ.uaspbo.model;
  * Berfungsi sebagai superclass yang menyediakan atribut dan metode
  * umum seperti identifier unik (id) yang digunakan oleh semua entitas.
  * 
- * Menggunakan konsep Object Oriented Programming (OOP):
- * - Abstraksi: Kelas ini abstrak yang berarti tidak dapat diinstansiasi langsung,
- *   tetapi diwariskan oleh kelas lain yang spesifik.
- * - Enkapsulasi: Atribut id bersifat protected dan diakses melalui getter dan setter.
+ * Konsep Object Oriented Programming (OOP) yang dipakai:
+ * - Abstraksi: Kelas ini adalah kelas abstrak yang tidak bisa diinstansiasi secara langsung,
+ *   dan harus diwariskan oleh kelas lainnya.
+ * - Enkapsulasi: Atribut id memiliki akses protected dan diakses melalui getter dan setter.
  * 
  * Kelas ini menyederhanakan pengelolaan identifier unik pada semua entitas di sistem,
  * sehingga kelas-kelas turunan dapat fokus pada atribut dan perilaku khusus mereka saja.

@@ -6,10 +6,10 @@ package id.univ.uaspbo.model;
  * Model ini menyimpan informasi nama, harga, dan stok produk.
  *
  * Konsep Object Oriented Programming (OOP) yang dipakai:
- * - Inheritance (Pewarisan): Kelas ini mewarisi kelas Entity yang merupakan kelas dasar abstrak
- *   dengan atribut id sebagai identifier unik. Hal ini memungkinkan reuse kode id pada semua entitas.
- * - Enkapsulasi: Atribut name, price, dan stock dideklarasikan private dan diakses melalui getter dan setter,
- *   sehingga melindungi atribut dari akses langsung dan menjaga integritas data.
+ * - Inheritance (Pewarisan): Kelas ini mewarisi kelas abstrak Entity,
+ *   sehingga atribut id dapat dipakai ulang oleh semua entitas produk.
+ * - Enkapsulasi: Atribut name, price, dan stock bersifat private dan diakses lewat getter dan setter,
+ *   untuk melindungi atribut dari akses langsung dan menjaga integritas data.
  */
 
 public class Product extends Entity {

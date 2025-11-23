@@ -14,8 +14,10 @@ import java.util.List;
  *
  * @param <T> Tipe entitas yang akan disimpan atau diambil dari file
  *
- * Konsep OOP yang digunakan:
- * - Generik (Generic): Menggunakan tipe parameter agar bisa digunakan untuk berbagai jenis entitas.
+ * Konsep Object Oriented Programming (OOP) yang dipakai:
+ * - Generic: Menggunakan tipe parameter generik agar dapat digunakan untuk berbagai tipe entitas.
+ * - Exception Handling: Menangani exception menggunakan try-catch pada operasi baca dan simpan file.
+ * - Collection: Menggunakan ArrayList dan List untuk penyimpanan sementara data entitas.
  */
 public class FileRepository<T> {
     private final File file;  // File penyimpanan data JSON

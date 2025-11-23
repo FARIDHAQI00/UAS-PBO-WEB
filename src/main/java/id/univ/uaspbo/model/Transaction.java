@@ -10,9 +10,10 @@ import java.util.List;
  * waktu transaksi, dan total harga keseluruhan.
  *
  * Konsep Object Oriented Programming (OOP) yang dipakai:
- * - Inheritance (Pewarisan): Mewarisi kelas Entity untuk atribut id unik.
- * - Enkapsulasi: Atribut disembunyikan dengan akses private dan disediakan getter-setter.
- * - Nested Class (Inner Class Static): TransactionItem merepresentasikan detail item dalam transaksi.
+ * - Inheritance (Pewarisan): Mewarisi kelas abstrak Entity untuk atribut id unik.
+ * - Enkapsulasi: Atribut private dilindungi dengan getter dan setter.
+ * - Collection: Menggunakan List<TransactionItem> untuk menampung daftar item transaksi.
+ * - Nested Class: Kelas statis inner TransactionItem mendeskripsikan detail item.
  */
 public class Transaction extends Entity {
     private String userId;                  // ID pengguna yang melakukan transaksi

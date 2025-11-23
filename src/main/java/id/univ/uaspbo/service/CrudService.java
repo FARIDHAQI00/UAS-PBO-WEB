@@ -11,7 +11,7 @@ import java.util.List;
  * Setiap kelas yang mengimplementasikan interface ini wajib menyediakan 
  * implementasi metode CRUD untuk tipe entitas yang ditentukan.
  *
- * Konsep OOP yang digunakan:
+ * Konsep Object Oriented Programming (OOP) yang dipakai:
  * - Abstraksi: Mendefinisikan kontrak method CRUD yang harus diimplementasikan oleh kelas yang mengimplementasikan interface ini.
  */
 public interface CrudService<T> {

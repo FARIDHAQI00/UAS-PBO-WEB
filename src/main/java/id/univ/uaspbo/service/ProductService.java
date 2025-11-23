@@ -14,10 +14,10 @@ import java.util.List;
  * Kelas ini mengatur pengambilan data produk dari file JSON yang path-nya dikonfigurasi
  * melalui properti aplikasi, memastikan konsistensi penyimpanan dan pengambilan data.
  *
- * Konsep OOP yang diterapkan dalam kelas ini meliputi:
- * - Pewarisan (Inheritance): Memanfaatkan implementasi dasar CRUD dari AbstractService agar tidak perlu mengulang kode.
- * - Enkapsulasi: Memproteksi variabel produkPath dan pengaksesan data produk melalui method yang disediakan.
- * - Polimorfisme: Meng-override method abstrak untuk mengatur spesifikasi tipe data produk dan identitas produk secara spesifik.
+ * Konsep Object Oriented Programming (OOP) yang dipakai:
+ * - Inheritance (Pewarisan): Memanfaatkan implementasi CRUD dasar dari AbstractService.
+ * - Encapsulation (Enkapsulasi): Variabel productsPath bersifat private dan diakses lewat method.
+ * - Polymorphism (Polimorfisme): Meng-override method abstrak dari AbstractService.
  */
 @Service
 public class ProductService extends AbstractService<Product> {
