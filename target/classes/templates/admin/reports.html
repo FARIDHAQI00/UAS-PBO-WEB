@@ -1,4 +1,35 @@
 <!DOCTYPE html>
+<!--
+  File ini adalah template HTML untuk halaman laporan pendapatan di bagian admin aplikasi.
+  Fungsi utama file ini adalah menampilkan ringkasan statistik transaksi seperti:
+  - Total pendapatan yang dihasilkan
+  - Total jumlah pesanan
+  - Rata-rata nilai pesanan
+  - Nilai pesanan tertinggi
+
+  Halaman ini di-render dengan menggunakan Thymeleaf sebagai template engine, 
+  dan mengimpor layout umum dari "fragments/header.html" untuk konsistensi tampilan.
+
+  Data statistik transaksi diisi melalui controller AdminController pada method "reports" yang memanggil
+  service TransactionService untuk mendapatkan data pendapatan dan transaksi yang relevan.
+
+  Selain menampilkan statistik, halaman ini juga menyediakan beberapa tindakan cepat untuk navigasi admin, 
+  seperti kembali ke dashboard, melihat semua transaksi, mengelola produk, dan tombol ekspor laporan 
+  yang berfungsi sebagai aksi form POST ke endpoint /admin/save.
+
+  Dengan struktur yang rapi dan penggunaan card sebagai kotak info, halaman ini memudahkan admin untuk memantau kinerja bisnis 
+  dari sisi pendapatan dan transaksi secara langsung.
+
+  Keterkaitan file ini:
+  - Terhubung dengan AdminController.java di backend
+  - Menggunakan data yang disediakan oleh TransactionService.java
+  - Menggunakan fragments/header.html sebagai template layout
+
+  Komponen penting tampilan yang digunakan:
+  - Template layout Thymeleaf dengan layout:decorate
+  - Data binding variabel totalRevenue, totalOrders, averageOrder, highestOrder dari model
+  - Navigasi tombol dengan atribut th:href dan form POST untuk ekspor laporan
+-->
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/header}">
 <head>

@@ -1,3 +1,31 @@
+<!--
+  File ini adalah template HTML menggunakan Thymeleaf untuk halaman manajemen produk pada panel admin.
+  Fungsi utama file ini adalah untuk menampilkan antarmuka agar admin dapat:
+    - Menambahkan produk baru ke sistem
+    - Melihat daftar produk yang sudah ada beserta detailnya
+    - Mengedit dan memperbarui data produk (nama, harga, stok)
+    - Menghapus produk yang tidak diperlukan
+    - Melakukan navigasi cepat ke dashboard admin dan halaman transaksi
+
+  File ini menggunakan framework Thymeleaf untuk menghubungkan data dinamis dari backend (kemungkinan besar
+  menggunakan kelas Controller AdminController) ke tampilan frontend.
+
+  Endpoint yang digunakan pada form antara lain:
+    - /admin/products/add       untuk menambahkan produk baru (method POST)
+    - /admin/products/update    untuk memperbarui produk yang sudah ada (method POST)
+    - /admin/products/delete    untuk menghapus produk (method POST)
+    - /admin/save               untuk menyimpan perubahan (method POST)
+
+  Data yang dioper ke template ini adalah list produk sebagai variabel "products".
+  Nilai-nilai produk ditampilkan menggunakan ekspresi Thymeleaf seperti ${product.name}, ${product.price}, dll.
+
+  File ini terhubung ke sumber daya CSS di /css/style.css untuk styling halaman.
+  Layout halaman menggunakan fragmen header dari src/main/resources/templates/fragments/header.html.
+
+  Dengan file ini, admin dapat mengelola inventaris produk secara langsung dari web tanpa perlu akses ke database secara manual.
+
+-->
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/header}">
@@ -13,7 +41,7 @@
     <div class="container admin-dashboard">
       <h1 class="page-header">Manajemen Produk</h1>
 
-      <!-- Add Product Form -->
+      <!-- Form untuk menambah produk baru, data dikirim ke endpoint /admin/products/add dengan metode POST -->
       <div class="card">
         <div class="card-header">
           Tambah Produk Baru
@@ -47,16 +75,18 @@
         </div>
       </div>
 
-      <!-- Products List -->
+      <!-- Daftar produk yang ditampilkan mengacu pada variabel 'products' yang dikirim dari backend -->
       <div class="card">
         <div class="card-header">
           Semua Produk ([[${#lists.size(products)}]])
         </div>
         <div class="card-body">
+          <!-- Tampilan pesan jika tidak ada produk sama sekali -->
           <div th:if="${#lists.isEmpty(products)}" class="alert alert-warning">
             Tidak ada produk tersedia. Tambahkan produk pertama Anda di atas!
           </div>
 
+          <!-- Grid produk yang memuat daftar produk dengan fungsi tambah, edit, dan hapus -->
           <div th:if="${!#lists.isEmpty(products)}" class="product-grid">
             <div th:each="product : ${products}" class="product-card">
               <div class="product-header">
@@ -64,10 +94,11 @@
                 <div class="product-price">Rp [[${#numbers.formatInteger(product.price, 0, 'COMMA')}]]</div>
               </div>
               <div class="product-body">
+                <!-- Menampilkan stok produk dengan indikator kelas CSS untuk stok banyak, sedikit, atau habis -->
                 <div class="product-stock" th:class="'product-stock ' + (${product.stock} > 10 ? 'available' : (${product.stock} > 0 ? 'low' : 'out'))"
                      th:text="'Stok: ' + ${product.stock}">Stok</div>
 
-                <!-- Edit Form -->
+                <!-- Form untuk mengedit data produk, submit ke /admin/products/update -->
                 <form th:action="@{/admin/products/update}" method="post">
                   <input type="hidden" name="id" th:value="${product.id}" />
                   <div class="edit-form-grid">
@@ -89,7 +120,7 @@
                   </button>
                 </form>
 
-                <!-- Delete Form -->
+                <!-- Form untuk menghapus produk, submit ke /admin/products/delete -->
                 <form th:action="@{/admin/products/delete}" method="post">
                   <input type="hidden" name="id" th:value="${product.id}" />
                   <button type="submit" class="btn btn-danger btn-sm"
@@ -103,7 +134,7 @@
         </div>
       </div>
 
-      <!-- Quick Actions -->
+      <!-- Bagian tindakan cepat untuk navigasi ke fitur penting lain seperti dashboard dan transaksi -->
       <div class="card">
         <div class="card-header">
           Tindakan Cepat
