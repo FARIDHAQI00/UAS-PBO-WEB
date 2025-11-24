@@ -37,7 +37,6 @@ public class User extends Entity {
         this.password = password;
         this.role = role;
     }
-
     /**
      * Mengambil email pengguna.
      */

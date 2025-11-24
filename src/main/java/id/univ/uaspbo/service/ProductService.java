@@ -27,8 +27,6 @@ public class ProductService extends AbstractService<Product> {
 
     /**
      * Mendapatkan path data produk untuk repository file.
-     *
-     * @return Path file produk
      */
     @Override
     protected String getDataPath() {
@@ -37,8 +35,6 @@ public class ProductService extends AbstractService<Product> {
 
     /**
      * Mendapatkan kelas array tipe Product untuk deserialisasi JSON.
-     *
-     * @return Kelas array produk
      */
     @Override
     protected Class<Product[]> getTypeClass() {
@@ -47,9 +43,6 @@ public class ProductService extends AbstractService<Product> {
 
     /**
      * Mendapatkan ID dari objek produk.
-     *
-     * @param product Produk
-     * @return ID produk
      */
     @Override
     protected String getEntityId(Product product) {
@@ -58,9 +51,6 @@ public class ProductService extends AbstractService<Product> {
 
     /**
      * Mengatur ID pada objek produk.
-     *
-     * @param product Produk
-     * @param id ID yang akan diset
      */
     @Override
     protected void setEntityId(Product product, String id) {

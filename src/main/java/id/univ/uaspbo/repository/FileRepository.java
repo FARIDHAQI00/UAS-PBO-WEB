@@ -26,7 +26,6 @@ public class FileRepository<T> {
 
     /**
      * Konstruktor untuk FileRepository.
-     *
      * @param path Path file tempat penyimpanan data
      * @param type Tipe kelas array untuk deserialisasi JSON
      */
@@ -39,9 +38,6 @@ public class FileRepository<T> {
 
     /**
      * Membaca semua entitas dari file JSON.
-     *
-     * @return Daftar entitas yang ada dalam file,
-     *         atau daftar kosong jika file tidak ada atau terjadi kesalahan
      */
     public List<T> readAll() {
         try {

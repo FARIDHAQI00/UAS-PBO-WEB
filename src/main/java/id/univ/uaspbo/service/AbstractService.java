@@ -26,19 +26,15 @@ public abstract class AbstractService<T> implements CrudService<T> {
     protected FileRepository<T> repo;  // Repository penyimpanan data berbasis file
     protected String dataPath;          // Path penyimpanan data
 
+
+    //Abstraksi: Mendefinisikan method abstrak untuk operasi CRUD yang harus diimplementasikan oleh subclass.
     /**
      * Mendapatkan path file repository untuk service ini.
-     * Harus diimplementasikan oleh kelas turunan.
-     *
-     * @return Path file data yang digunakan repository
      */
     protected abstract String getDataPath();
 
     /**
      * Mendapatkan tipe kelas array entitas untuk keperluan deserialisasi JSON.
-     * Harus diimplementasikan oleh kelas turunan.
-     *
-     * @return Kelas array entitas
      */
     protected abstract Class<T[]> getTypeClass();
 
@@ -54,8 +50,6 @@ public abstract class AbstractService<T> implements CrudService<T> {
 
     /**
      * Mendapatkan semua entitas dari repository.
-     *
-     * @return Daftar semua entitas
      */
     @Override
     public List<T> getAll() {
@@ -64,9 +58,6 @@ public abstract class AbstractService<T> implements CrudService<T> {
 
     /**
      * Mencari entitas berdasarkan ID.
-     *
-     * @param id ID entitas yang dicari
-     * @return Entitas jika ditemukan, atau null jika tidak ada
      */
     @Override
     public T findById(String id) {
@@ -79,8 +70,6 @@ public abstract class AbstractService<T> implements CrudService<T> {
     /**
      * Menambahkan entitas baru ke repository.
      * ID entitas akan di-generate secara otomatis.
-     *
-     * @param entity Entitas yang akan ditambahkan
      */
     @Override
     public void add(T entity) {
@@ -92,8 +81,6 @@ public abstract class AbstractService<T> implements CrudService<T> {
 
     /**
      * Memperbarui entitas yang sudah ada berdasarkan ID.
-     *
-     * @param entity Entitas dengan data yang diperbarui
      */
     @Override
     public void update(T entity) {
@@ -110,8 +97,6 @@ public abstract class AbstractService<T> implements CrudService<T> {
 
     /**
      * Menghapus entitas berdasarkan ID.
-     *
-     * @param id ID entitas yang akan dihapus
      */
     @Override
     public void delete(String id) {
@@ -122,8 +107,6 @@ public abstract class AbstractService<T> implements CrudService<T> {
 
     /**
      * Menyimpan semua entitas yang diberikan ke repository.
-     *
-     * @param entities Daftar entitas yang akan disimpan
      */
     @Override
     public void saveAll(List<T> entities) {
@@ -132,9 +115,6 @@ public abstract class AbstractService<T> implements CrudService<T> {
 
     /**
      * Mendapatkan ID entitas (diimplementasikan oleh kelas turunan).
-     *
-     * @param entity Entitas
-     * @return ID entitas
      */
     protected abstract String getEntityId(T entity);
 
