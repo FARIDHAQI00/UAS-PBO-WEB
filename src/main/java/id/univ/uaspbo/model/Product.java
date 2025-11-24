@@ -12,7 +12,7 @@ package id.univ.uaspbo.model;
  *   untuk melindungi atribut dari akses langsung dan menjaga integritas data.
  */
 
-public class Product extends Entity {
+public class Product extends Entity {      //Kelas ini mewarisi kelas abstrak Entity,
 
     private String name;        //Nama produk
     private int price;          //Harga produk dalam satuan integer (misalnya rupiah).
