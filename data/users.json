@@ -13,4 +13,9 @@
   "email" : "f@uas",
   "password" : "123",
   "role" : "USER"
+}, {
+  "id" : "f636a99e-d9db-4d2c-b1c8-fc246043661e",
+  "email" : "klp1@uas",
+  "password" : "123",
+  "role" : "USER"
 } ]
