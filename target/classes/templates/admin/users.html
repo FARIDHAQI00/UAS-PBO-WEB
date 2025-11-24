@@ -1,8 +1,37 @@
+<!--
+  File ini adalah template HTML untuk halaman manajemen pengguna di panel admin.
+  Fungsi utama halaman ini adalah untuk memungkinkan admin mengelola pengguna yang terdaftar,
+  termasuk menampilkan daftar pengguna, mengubah peran pengguna, menambah pengguna baru,
+  dan menghapus pengguna.
+
+  Template ini dibuat dengan Thymeleaf sebagai template engine dan menggunakan layout fragmen header untuk konsistensi tampilan.
+
+  Data pengguna didapatkan dari backend melalui AdminController dan diteruskan ke variabel "users".
+  
+  Fitur yang disediakan halaman ini meliputi:
+  - Statistik jumlah total pengguna, pengguna bertipe admin, dan pengguna reguler.
+  - Tabel pengguna dengan kolom email, kata sandi, peran, dan status aksi.
+  - Form untuk memperbarui peran pengguna secara individu.
+  - Form untuk menghapus pengguna berdasarkan email.
+  - Form untuk menambahkan pengguna baru dengan isian email, kata sandi, dan peran.
+  - Navigasi cepat untuk kembali ke dashboard, melihat transaksi, dan laporan.
+  - Form untuk menyimpan perubahan yang dilakukan admin.
+
+  Endpoint penting yang dipakai pada form:
+  - /admin/users/update-role (POST) untuk mengubah peran pengguna
+  - /admin/users/delete (POST) untuk menghapus pengguna
+  - /admin/users/add (POST) untuk menambah pengguna baru
+  - /admin/save (POST) untuk menyimpan perubahan
+
+  Halaman ini penting untuk pengelolaan pengguna dan keamanan akses aplikasi.
+  Terhubung langsung dengan AdminController.java yang mengelola logika pengguna dan penyediaan data.
+
+-->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/header}">
 <head>
-  <title>Kelola Pengguna - UAS PBO</title>
+  <title>Kelola Pengguna</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -13,27 +42,23 @@
     <div class="container admin-dashboard">
       <h1 class="page-header">Manajemen Pengguna</h1>
 
-      <!-- User Stats -->
+      <!-- Statistik Pengguna -->
       <div class="stats-grid">
         <div class="stat-card">
           <div class="stat-number" th:text="${#lists.size(users)}">0</div>
           <div class="stat-label">Total Pengguna</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number">1</div>
+          <div class="stat-number" th:text="${#lists.size(users.?[role == 'ADMIN'])}">0</div>
           <div class="stat-label">Pengguna Admin</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number">1</div>
+          <div class="stat-number" th:text="${#lists.size(users.?[role == 'USER'])}">0</div>
           <div class="stat-label">Pengguna Reguler</div>
         </div>
-        <!-- <div class="stat-card">
-          <div class="stat-number">2</div>
-          <div class="stat-label">Pelanggan Aktif</div>
-        </div> -->
       </div>
 
-      <!-- Users Table -->
+      <!-- Tabel Pengguna -->
       <div class="card">
         <div class="card-header">
           Pengguna Terdaftar
@@ -101,7 +126,7 @@
         </div>
       </div>
 
-      <!-- Add New User -->
+      <!-- Tambah Pengguna Baru -->
       <div class="card">
         <div class="card-header">
           Tambah Pengguna Baru
@@ -138,7 +163,7 @@
         </div>
       </div>
 
-      <!-- Quick Actions -->
+      <!-- Tindakan Cepat -->
       <div class="card">
         <div class="card-header">
           Tindakan Cepat

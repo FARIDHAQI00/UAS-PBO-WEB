@@ -14,6 +14,14 @@ body {
   overflow-x: hidden;
 }
 
+/*!
+ * style.css
+ * File ini berisi styling umum untuk antarmuka web aplikasi.
+ * Menggunakan tema gelap dengan warna gradasi dan efek glassmorphism.
+ * Mendukung tata letak responsif, navigasi, kartu, tombol, form, tabel,
+ * serta gaya khusus untuk dashboard admin dan animasi.
+ */
+
 :root {
   --primary-color: #8b5cf6;
   --secondary-color: #3b82f6;

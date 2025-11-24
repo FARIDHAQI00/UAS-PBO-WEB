@@ -1,8 +1,24 @@
+<!--
+  File ini adalah template halaman registrasi pengguna baru untuk aplikasi sistem kasir pemesanan makanan.
+  Fungsi utama halaman ini memungkinkan pengguna membuat akun baru dengan memasukkan email,
+  password, dan konfirmasi password.
+
+  Template dibuat menggunakan Thymeleaf sebagai template engine dan diberi gaya agar tampilan menarik dan responsif.
+
+  Fitur halaman:
+  - Form registrasi yang mengharuskan pengguna memasukkan email, kata sandi, dan konfirmasi kata sandi.
+  - Pesan kesalahan ditampilkan jika ada masalah saat registrasi.
+  - Pesan sukses ditampilkan ketika registrasi berhasil.
+  - Link untuk navigasi ke halaman login bagi pengguna yang sudah mempunyai akun.
+
+  Membantu pengguna melakukan pendaftaran agar dapat menggunakan aplikasi sistem kasir.
+  Terhubung dengan AuthController di backend yang menangani logic pendaftaran pengguna baru.
+-->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8" />
-  <title>Registrasi - UAS PBO</title>
+  <title>Registrasi Sitem Kasir</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">

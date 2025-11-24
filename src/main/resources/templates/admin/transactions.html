@@ -1,8 +1,28 @@
+<!--
+  File ini adalah template HTML untuk menampilkan halaman riwayat transaksi pada panel admin.
+  Fungsi utama halaman ini adalah menampilkan daftar lengkap semua transaksi yang telah terjadi dalam sistem.
+  Halaman ini juga menampilkan statistik singkat seperti total transaksi, total pendapatan, dan nilai rata-rata pesanan.
+
+  Template ini menggunakan Thymeleaf sebagai template engine dengan layout fragmen header untuk konsistensi tampilan.
+
+  Data transaksi disediakan oleh AdminController di backend dan diteruskan ke variabel "transactions".
+  Daftar transaksi memperlihatkan rincian ID transaksi, ID pelanggan, tanggal dan waktu transaksi,
+  daftar item dengan jumlah dan harga per item, serta total harga transaksi.
+
+  Selain menampilkan tabel transaksi, halaman ini menyediakan tombol navigasi cepat untuk:
+  - Kembali ke dashboard admin
+  - Melihat laporan detail
+  - Mengelola produk
+
+  File ini sangat penting untuk memantau aktivitas penjualan dan pendapatan oleh admin.
+  Terhubung dengan AdminController.java yang mengelola data transaksi.
+
+-->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/header}">
 <head>
-  <title>Semua Transaksi - UAS PBO</title>
+  <title>Semua Transaksi</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -13,27 +33,26 @@
     <div class="container admin-dashboard">
       <h1 class="page-header">Riwayat Transaksi</h1>
 
-      <!-- Stats Overview -->
+      <!-- Ikhtisar Statistik -->
         <div class="stats-grid">
+          <!-- Total transaksi yang tercatat -->
           <div class="stat-card">
             <div class="stat-number" th:text="${#lists.size(transactions)}">0</div>
             <div class="stat-label">Total Transaksi</div>
           </div>
+          <!-- Total pendapatan dari semua transaksi -->
           <div class="stat-card">
             <div class="stat-number">Rp [[${#numbers.formatInteger(#aggregates.sum(transactions.![total]), 0, 'COMMA')}]]</div>
             <div class="stat-label">Total Pendapatan</div>
           </div>
-          <!-- <div class="stat-card">
-            <div class="stat-number">1</div>
-            <div class="stat-label">Pelanggan Aktif</div>
-          </div> -->
+          <!-- Nilai rata-rata pesanan per transaksi -->
           <div class="stat-card">
             <div class="stat-number" th:text="${transactions != null and !transactions.isEmpty() ? #numbers.formatInteger(#aggregates.avg(transactions.![total]), 0, 'COMMA') : '0'}">0</div>
             <div class="stat-label">Nilai Rata-rata Pesanan</div>
           </div>
         </div>
 
-      <!-- Transactions Table -->
+      <!-- Tabel Transaksi -->
       <div class="card">
         <div class="card-header">
           Semua Transaksi
@@ -94,7 +113,7 @@
         </div>
       </div>
 
-      <!-- Quick Actions -->
+      <!-- Tindakan Cepat -->
       <div class="card">
         <div class="card-header">
           Tindakan Cepat
